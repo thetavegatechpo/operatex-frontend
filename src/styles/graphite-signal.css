@@ -113,3 +113,8 @@ body .ox-login .ox-login-box .ox-signin { color: #fff !important; background: #2
 
 body .app-layout .operatex-navbar .ox-wordmark>span { color: #83baff !important; }
 body .sidebar .ox-menu-search { background: #172f49 !important; border-color: #31506e !important; }
+
+/* OperateX brand: red O and X across workspace and sign-in. */
+body .ox-wordmark > span.ox-brand-accent { color: #d92d3a !important; }
+body .app-layout .operatex-navbar .ox-wordmark > span.ox-brand-accent,
+body .ox-login .ox-login-story .ox-wordmark > span.ox-brand-accent { color: #ff4d4f !important; }

@@ -2,6 +2,17 @@ import api from "../../../../shared/api/client.js";
 
 const userRolePermissionService = {
 
+    // Department-wise permission checkbox matrix
+    getPermissionMatrix() {
+        return api.get("/user-role-permission/permission-matrix");
+    },
+
+    savePermissionMatrix(roleId, permissionIds) {
+        return api.put(`/user-role-permission/permission-matrix/${roleId}`, {
+            permission_ids: permissionIds
+        });
+    },
+
     // =====================================================
     // CONFIGURATION
     // =====================================================

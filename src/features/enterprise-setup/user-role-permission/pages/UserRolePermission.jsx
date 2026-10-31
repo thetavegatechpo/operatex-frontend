@@ -34,6 +34,7 @@ import lineService from "../../line-master/api/line.service.js";
 import machineService from "../../../master-data/machine-master/api/machine.service.js";
 
 import "./UserRolePermission.css";
+import PermissionMatrix from "./PermissionMatrix.jsx";
 
 function UserRolePermission() {
 
@@ -929,7 +930,7 @@ const loadMachines = async () => {
 
                     <Col xs="auto">
 
-                        <Button
+                        {activeTab !== "ACCESS_MATRIX" && <Button
 
                             variant="primary"
 
@@ -949,7 +950,7 @@ const loadMachines = async () => {
 
                             Add
 
-                        </Button>
+                        </Button>}
 
                         <Button
 
@@ -1256,15 +1257,24 @@ const loadMachines = async () => {
                     Role Permission
 
                 </Button>
+                <Button
+                    variant={activeTab === "ACCESS_MATRIX" ? "primary" : "outline-primary"}
+                    className="ms-2 mt-1 mt-sm-0"
+                    onClick={() => setActiveTab("ACCESS_MATRIX")}
+                >
+                    Department Access (Checkboxes)
+                </Button>
 
             </Card.Body>
 
         </Card>
 
+        {activeTab === "ACCESS_MATRIX" && <PermissionMatrix />}
+
         {/* ===================================================== */}
         {/* Master Table */}
         {/* ===================================================== */}
-
+        {activeTab !== "ACCESS_MATRIX" && (
         <Card className="shadow-sm border-0">
 
             <Card.Body className="p-0">
@@ -1756,6 +1766,8 @@ const loadMachines = async () => {
             </Card.Body>
 
         </Card>
+
+        )}
 
         {/* ===================================================== */}
         {/* Add / Edit Modal */}
