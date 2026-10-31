@@ -16,6 +16,7 @@ import {
   Clipboard2Pulse,
   ClockHistory,
   Download,
+  Eye,
   ExclamationTriangleFill,
   Plus,
   Search,
@@ -1936,7 +1937,7 @@ export default function BreakdownMaintenance() {
         <div className="table-responsive"><Table hover className="bd-table"><thead><tr><th>Date</th><th>Machine</th><th>Shift</th><th>Start</th><th>Duration</th><th>Reason</th><th>Location</th><th>Technician</th><th>Severity</th><th>Status</th><th>Activities</th><th>Action</th></tr></thead><tbody>
           {(runtimeQ.isLoading || reportQ.isLoading) && <tr><td colSpan="12" className="text-center p-5"><Spinner animation="border" /></td></tr>}
           {!visibleRows.length && !(runtimeQ.isLoading || reportQ.isLoading) && <tr><td colSpan="12" className="text-center text-muted p-5">No breakdown record found.</td></tr>}
-          {visibleRows.map((row) => <tr key={row.breakdown_event_id}><td>{safe(String(row.business_date || "").slice(0, 10))}</td><td><strong>{row.machine_name || row.machine_code}</strong></td><td>{row.shift_name || row.shift_id}</td><td>{displayDateTime(row.breakdown_start_ts)}</td><td>{displayDuration(row.duration_sec)}</td><td>{row.reason_name}</td><td>{row.breakdown_location}</td><td>{row.technician_name}</td><td><StateBadge value={row.severity} /></td><td><StateBadge value={row.status} /></td><td>{row.activity_count ?? "-"}</td><td><Button size="sm" variant="outline-primary" onClick={() => setTicketId(row.breakdown_event_id)}>View / Action</Button></td></tr>)}
+          {visibleRows.map((row) => <tr key={row.breakdown_event_id}><td>{safe(String(row.business_date || "").slice(0, 10))}</td><td><strong>{row.machine_name || row.machine_code}</strong></td><td>{row.shift_name || row.shift_id}</td><td>{displayDateTime(row.breakdown_start_ts)}</td><td>{displayDuration(row.duration_sec)}</td><td>{row.reason_name}</td><td>{row.breakdown_location}</td><td>{row.technician_name}</td><td><StateBadge value={row.severity} /></td><td><StateBadge value={row.status} /></td><td>{row.activity_count ?? "-"}</td><td><Button size="sm" variant="outline-primary" className="bd-view-action" onClick={() => setTicketId(row.breakdown_event_id)}><Eye aria-hidden="true" /><span>View / Action</span></Button></td></tr>)}
         </tbody></Table></div>
       </>}
 
