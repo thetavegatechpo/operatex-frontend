@@ -1,0 +1,127 @@
+/* src/pages/GaugeInstrumentMaster/GaugeInstrumentMaster.css */
+
+.gauge-master {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.gauge-master .gauge-header-card {
+    border-radius: 14px;
+}
+
+.gauge-master .gauge-header-card .card-body {
+    padding: 1.25rem 1.5rem;
+}
+
+.gauge-master .gauge-header-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.gauge-master table {
+    vertical-align: middle;
+}
+
+.gauge-master .table-responsive {
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.gauge-master .modal-header {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.gauge-master .modal-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.gauge-master .modal-body {
+    max-height: 74vh;
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.gauge-master .form-label {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 0.4rem;
+}
+
+.gauge-master .form-control,
+.gauge-master .form-select {
+    min-height: 40px;
+    border-radius: 7px;
+}
+
+.gauge-master textarea.form-control {
+    min-height: auto;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.gauge-master hr {
+    margin-top: 0.4rem;
+    margin-bottom: 1.25rem;
+    border-color: #dee2e6;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.gauge-master .btn {
+    border-radius: 7px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.gauge-master .form-switch {
+    padding-top: 0.45rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .gauge-master {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .gauge-master .gauge-header-card .card-body {
+        padding: 1rem;
+    }
+
+}

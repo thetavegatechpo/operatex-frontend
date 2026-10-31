@@ -1,0 +1,24 @@
+.company-master {
+  min-height: 100%;
+}
+
+.company-master .page-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ox-text);
+}
+
+.company-master .page-subtitle {
+  color: var(--ox-muted);
+  font-size: 12px;
+}
+
+.company-master .table .btn {
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .company-master .page-title {
+    font-size: 21px;
+  }
+}

@@ -1,0 +1,7 @@
+import React,{useState} from 'react';
+import {ChartNoAxesCombined,ChartColumn} from 'lucide-react';
+import ProductionPulse from '../design/ProductionPulse.jsx';
+import CycleRun from '../design/CycleRun.jsx';
+import ReportLens from './ReportLens.jsx';
+import './operations.css';
+export default function ExecutionReport({records=[],kind='production',machineMap=new Map(),processMap=new Map()}){const [view,setView]=useState('metric');return <section className="nx-execution-report" aria-label={kind==='production'?'Production report visualizations':'Cycle report visualizations'}><div className="nx-report-launch"><div><ChartNoAxesCombined size={16}/><span>REPORT EXPLORER · selected returned records</span></div><div className="nx-segment"><button type="button" className={view==='metric'?'on':''} onClick={()=>setView('metric')}><ChartNoAxesCombined size={13}/>{kind==='production'?'Quantity chart':'Cycle trace'}</button><button type="button" className={view==='records'?'on':''} onClick={()=>setView('records')}><ChartColumn size={13}/>Record analysis</button></div></div>{view==='metric'?(kind==='production'?<ProductionPulse records={records} machineMap={machineMap} processMap={processMap} report/>:<CycleRun records={records} machineMap={machineMap} processMap={processMap} report/>):<ReportLens records={records} title={kind==='production'?'Production event breakdown':'Cycle event breakdown'}/>}<p className="nx-report-note">This view uses report results only. Change the report filters or fetch the report to update it.</p></section>}

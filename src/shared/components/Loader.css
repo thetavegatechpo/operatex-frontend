@@ -1,0 +1,25 @@
+.loader-wrapper{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:250px;
+
+}
+
+.loader-text{
+
+    margin-top:15px;
+
+    font-size:15px;
+
+    color:#6c757d;
+
+    font-weight:500;
+
+}

@@ -1,0 +1,387 @@
+
+/* =========================================================
+   OPERATEX MES — TOOL REPLACEMENT MODULE
+   Scoped styling — does not affect other modules
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page {
+    --tr-primary: #3159c9;
+    --tr-primary-light: #edf2ff;
+    --tr-border: #e7eaf1;
+    --tr-muted: #788397;
+    --tr-radius: 12px;
+
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 30px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card {
+    border: 1px solid var(--tr-border) !important;
+    border-radius: var(--tr-radius);
+    box-shadow: 0 4px 18px rgba(20, 35, 75, 0.035) !important;
+    transition:
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card:hover {
+    box-shadow: 0 8px 26px rgba(20, 35, 75, 0.065) !important;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card-body {
+    padding: 20px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card-header {
+    padding: 18px 20px 10px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .text-muted {
+    color: var(--tr-muted) !important;
+}
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 .card {
+    position: relative;
+    overflow: hidden;
+    min-height: 116px;
+    border-radius: 14px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--tr-primary);
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 > div:nth-child(2) .card::before {
+    background: #17a673;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 > div:nth-child(3) .card::before {
+    background: #e6a23c;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 > div:nth-child(4) .card::before {
+    background: #dc5061;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px 24px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 .fs-3 {
+    font-weight: 700 !important;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+}
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #57657b;
+    margin-bottom: 7px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .form-control,
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .form-select {
+    min-height: 42px;
+    border: 1px solid #dfe4ee;
+    border-radius: 9px;
+    font-size: 13px;
+    box-shadow: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .form-control:focus,
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .form-select:focus {
+    border-color: #8fa7f0;
+    box-shadow: 0 0 0 3px rgba(49, 89, 201, 0.1);
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .form-control::placeholder {
+    color: #a0a9b8;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 36px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .btn:focus-visible {
+    outline: 2px solid var(--tr-primary);
+    outline-offset: 2px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .btn-outline-primary {
+    border-color: #cbd6f8;
+    color: var(--tr-primary);
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .btn-outline-primary:hover {
+    background: var(--tr-primary-light);
+    border-color: #9eb3ed;
+    color: #264ab1;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .btn-primary {
+    background: var(--tr-primary);
+    border-color: var(--tr-primary);
+}
+
+/* =========================================================
+   INSTALLED TOOL TABLE
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table {
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table thead th {
+    padding: 14px 15px;
+    background-color: #f5f7fc;
+    border-bottom: 1px solid var(--tr-border);
+    color: #66738a;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eff1f6;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table tbody tr:hover > td {
+    background: #f8faff;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table tbody tr.table-active > td {
+    background: #eef3ff;
+}
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .badge {
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .badge.bg-success {
+    background: #e7f7ef !important;
+    color: #178453;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .badge.bg-warning {
+    background: #fff2d8 !important;
+    color: #9d6900;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .badge.bg-danger {
+    background: #ffebee !important;
+    color: #c83f52;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .badge.bg-primary {
+    background: #eaf0ff !important;
+    color: #3159c9;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .badge.bg-secondary {
+    background: #eef0f5 !important;
+    color: #657187;
+}
+
+/* =========================================================
+   REPLACEMENT READINESS
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card .border.rounded-3 {
+    border-color: var(--tr-border) !important;
+    background: #fafbfe;
+    padding: 16px !important;
+    transition: border-color 0.2s ease;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card .border.rounded-3:hover {
+    border-color: #bfd0f4 !important;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card .border.rounded-3 .fs-4 {
+    color: #263b70;
+    font-weight: 700 !important;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .alert {
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .alert-success {
+    background: #effaf4;
+    border-color: #d0eddc;
+    color: #23794b;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .alert-warning {
+    background: #fff9e9;
+    border-color: #f3e3b8;
+    color: #906819;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .alert-danger {
+    background: #fff0f1;
+    border-color: #f3ced3;
+    color: #ad3548;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .alert-secondary,
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .alert-light {
+    background: #f7f8fc;
+    border-color: var(--tr-border);
+    color: #606d82;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table-responsive::-webkit-scrollbar {
+    height: 7px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table-responsive::-webkit-scrollbar-track {
+    background: #f1f3f8;
+    border-radius: 10px;
+}
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table-responsive::-webkit-scrollbar-thumb {
+    background: #c6cedd;
+    border-radius: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card-body {
+        padding: 16px;
+    }
+
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table {
+        font-size: 12px;
+    }
+
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table thead th,
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table tbody td {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .card-body {
+        padding: 14px;
+    }
+
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .btn {
+        font-size: 12px;
+    }
+
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table {
+        min-width: 850px;
+    }
+
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page > .row.g-3.mb-4 .card {
+        min-height: 100px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page *,
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page *::before,
+    :where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* =========================================================
+   TOOL REPLACEMENT - TABLE ACTION BUTTON FIX
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-replacement"])) .tool-replacement-page .table .btn-sm {
+    width: auto !important;
+    min-width: 100px !important;
+    height: 36px !important;
+
+    padding: 7px 14px !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+    white-space: nowrap;
+
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 8px;
+}

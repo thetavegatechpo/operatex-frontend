@@ -1,0 +1,15 @@
+{
+  "productionBuild": "passed",
+  "sourceFilesParsed": 122,
+  "relativeImportsResolved": 313,
+  "regressionChecksPassed": 12,
+  "routePathsUnchanged": 41,
+  "pageFilesWithIdenticalJSX": 39,
+  "pageFilesWithIntentionalChanges": [
+    "features/oee-loss/loss-tree/pages/LossTree.jsx"
+  ],
+  "cssFilesWithUnchangedRules": 29,
+  "backendDatabaseLiveTests": "pending",
+  "visualBrowserComparison": "not run",
+  "compiledCssAsset": "index-BQ-gGrRJ.css"
+}

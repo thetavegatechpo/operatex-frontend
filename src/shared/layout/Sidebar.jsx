@@ -1,0 +1,436 @@
+import React, { useEffect, useState } from "react";
+import { Accordion } from "react-bootstrap";
+import {
+    HouseDoorFill,
+    Building,
+    Diagram3Fill,
+    CpuFill,
+    PersonCircle,
+    List,
+    CalendarCheckFill
+} from "react-bootstrap-icons";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { Search, Activity, Wrench, ShieldCheck } from "lucide-react";
+import "./Sidebar.css";
+
+const USER_KEY = "operatex_user";
+
+function readSavedUser() {
+    try {
+        const value = JSON.parse(
+            localStorage.getItem(USER_KEY) || "null"
+        );
+
+        if (
+            value &&
+            typeof value === "object" &&
+            !Array.isArray(value)
+        ) {
+            return value;
+        }
+
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+export const menuGroups = [
+    {
+        key: "0",
+        title: "Enterprise Setup",
+        Icon: Building,
+        items: [
+            {
+                title: "Company Master",
+                path: "/company-master"
+            },
+            {
+                title: "Plant / Shop Master",
+                path: "/plant-shop-master"
+            },
+            {
+                title: "Line Master",
+                path: "/line-master"
+            },
+            {
+                title: "Shift Calendar",
+                path: "/shift-calendar"
+            },
+            {
+                title: "User Role Permission",
+                path: "/user-role-permission"
+            },
+            {
+                title: "Module-Enablement",
+                path: "/module-Enablement"
+            }
+        ]
+    },
+    {
+        key: "1",
+        title: "Master Data",
+        Icon: Diagram3Fill,
+        items: [
+            {
+                title: "Machine Master",
+                path: "/machine-master"
+            },
+            {
+                title: "Device Master",
+                path: "/device-master"
+            },
+            {
+                title: "Signal Mapping",
+                path: "/signal-mapping"
+            },
+     {
+    title: "Model Master",
+    path: "/model-master"
+},
+            {
+                title: "Part Master",
+                path: "/part-master"
+            },
+            {
+                title: "Process Master",
+                path: "/process-master"
+            },
+            {title: "Station Master", path: "/station-master"},
+            {
+                title: "Route / Station Master",
+                path: "/route-master"
+            },
+            {
+                title: "Tool Master",
+                path: "/tool-master"
+            },
+            {
+                title: "Gauge / Instrument Master",
+                path: "/gauge-instrument-master"
+            },
+            {
+                title: "Document / SOP Master",
+                path: "/document-master"
+            },
+            {
+                title: "Skill-Matrix",
+                path: "/skill-matrix"
+            }
+        ]
+    },
+    {
+        key: "2",
+        title: "Planning",
+        Icon: CalendarCheckFill,
+        items: [
+            {
+                title: "Production Order",
+                path: "/production-order"
+            },
+            {
+                title: "Production Plan",
+                path: "/production-plan"
+            },
+            {
+                title: "Shift Plan",
+                path: "/shift-plan"
+            },
+            {
+                title: "Scheduling Rules",
+                path: "/scheduling-rules"
+            },
+            {
+                title: "Material / Batch / Heat Code",
+                path: "/material-batch-heat-code"
+            },
+            {
+                title: "Changeover / Setup Plan",
+                path: "/changeover-setup-plan"
+            }
+        ]
+    },
+    {
+        key: "3",
+        title: "Production Execution",
+        Icon: CpuFill,
+        items: [
+            {
+                title: "Operator Workstation",
+                path: "/operator-workstation"
+            },
+            {
+                title: "Production Count",
+                path: "/production-count"
+            },
+            {
+                title: "Cycle Time Tracking",
+                path: "/cycle-time-tracking"
+            },
+            {
+                title: "Machine Status",
+                path: "/machine-status"
+            },
+            {
+                title: "Line Indexing / Unit Movement",
+                path: "/line-indexing-unit-movement"
+            },
+            {
+                title: "Rework / Reject / Bypass",
+                path: "/rework-reject-bypass"
+            }
+        ]
+    },
+    {
+        key: "4",
+        title: "OEE & Loss",
+        Icon: Activity,
+        items: [
+            {
+                title: "Downtime Detection",
+                path: "/downtime-detection"
+            },
+            {
+                title: "Availability",
+                path: "/availability"
+            },
+            {
+                title: "Performance",
+                path: "/performance"
+            },
+            {
+                title: "Quality",
+                path: "/quality"
+            },
+            {
+                title: "OEE",
+                path: "/oee"
+            },
+            {
+                title: "Breakdown Management",
+                path: "/breakdown-management"
+            },
+            {
+                title: "MTTR / MTBF",
+                path: "/mttr-mtbf"
+            },
+            {
+                title: "Loss Tree",
+                path: "/loss-tree"
+            }
+        ]
+    },
+    {
+        key: "6",
+        title: "Maintenance Management",
+        Icon: Wrench,
+        items: [
+            {
+                title: "PM Strategy",
+                path: "/maintenance/pm-strategy"
+            },
+             {
+            title: "Maintenance Schedule",
+            path: "/maintenance/maintenance-schedule"
+        },
+          {
+    title: "Breakdown Maintenance",
+    path: "/maintenance/breakdown-maintenance"
+}
+        ]
+    },
+    {
+        key: "5",
+        title: "Quality Management",
+        Icon: ShieldCheck,
+        items: [
+            {
+                title: "Checksheet",
+                path: "/quality/checksheet"
+            },
+            { title: "Gauge / SPC", path: "/quality/gauge-spc" },
+            { title: "In-Process Inspection", path: "/quality/in-process-inspection" },
+            { title: "Setup Approval", path: "/quality/setup-approval" }
+        ]
+    },
+    {
+        key: "7",
+        title: "Connectivity",
+        Icon: CpuFill,
+        items: [
+            { title: "CNC Adapter", path: "/connectivity/cnc-adapter" },
+            { title: ".NET Gateway", path: "/connectivity/net-gateway" }
+        ]
+    },
+    {
+        key: "8",
+        title: "Tooling",
+        Icon: Wrench,
+        items: [
+            { title: "Tool Life Monitoring", path: "/tooling/tool-life-monitoring" },
+            { title: "Tool Replacement", path: "/tooling/tool-replacement" }
+        ]
+    }
+];
+
+function renderMenuItems(items) {
+    return items.map((item) => {
+        if (item.disabled) {
+            return (
+                <div
+                    key={item.path}
+                    className="submenu-link"
+                    aria-disabled="true"
+                    style={{
+                        opacity: 0.45,
+                        cursor: "not-allowed",
+                        userSelect: "none"
+                    }}
+                    title="Module will be enabled after implementation"
+                >
+                    <span className="submenu-line" />
+                    {item.title}
+                </div>
+            );
+        }
+
+        return (
+            <NavLink
+                key={item.path}
+                to={item.path}
+                className="submenu-link"
+            >
+                <span className="submenu-line" />
+                {item.title}
+            </NavLink>
+        );
+    });
+}
+
+export default function Sidebar() {
+    const {pathname} = useLocation();
+    const [search,setSearch] = useState("");
+    const activeGroup=menuGroups.find(g=>g.items.some(i=>i.path.toLowerCase()===pathname.toLowerCase()))?.key;
+    const groups=menuGroups.map(g=>({...g,items:g.items.filter(i=>(g.title+" "+i.title).toLowerCase().includes(search.toLowerCase()))})).filter(g=>g.items.length);
+    const [collapsed, setCollapsed] = useState(false);
+    const [user, setUser] = useState(readSavedUser);
+
+    useEffect(() => {
+        const handleStorage = (event) => {
+            if (
+                event.key === USER_KEY ||
+                event.key === null
+            ) {
+                setUser(readSavedUser());
+            }
+        };
+
+        const handleSessionEnded = () => {
+            setUser(null);
+        };
+
+        window.addEventListener("storage", handleStorage);
+        window.addEventListener(
+            "operatex:session-ended",
+            handleSessionEnded
+        );
+
+        return () => {
+            window.removeEventListener(
+                "storage",
+                handleStorage
+            );
+            window.removeEventListener(
+                "operatex:session-ended",
+                handleSessionEnded
+            );
+        };
+    }, []);
+
+    return (
+        <div
+            className={
+                collapsed
+                    ? "sidebar collapsed"
+                    : "sidebar"
+            }
+        >
+            <div className="user-panel">
+                <PersonCircle size={42} />
+
+                {!collapsed && (
+                    <div>
+                        <div className="user-name">
+                            {user?.username || ""}
+                        </div>
+                        <small>
+                            {user?.role_name || ""}
+                        </small>
+                    </div>
+                )}
+
+                <button
+                    type="button"
+                    className="collapse-btn"
+                    aria-label={
+                        collapsed
+                            ? "Expand sidebar"
+                            : "Collapse sidebar"
+                    }
+                    aria-expanded={!collapsed}
+                    onClick={() => {
+                        setCollapsed((current) => !current);
+                    }}
+                >
+                    <List size={22} />
+                </button>
+            </div>
+
+            {!collapsed && <label className="ox-menu-search"><Search size={15}/><input aria-label="Find a module" placeholder="Find a module…" value={search} onChange={e=>setSearch(e.target.value)}/></label>}
+            <NavLink
+                title="Dashboard"
+                to="/dashboard"
+                className="menu-link"
+            >
+                <HouseDoorFill />
+                {!collapsed && <span>Dashboard</span>}
+            </NavLink>
+
+            <Accordion
+                alwaysOpen
+                key={pathname+search+collapsed}
+                defaultActiveKey={search?groups.map(g=>g.key):[activeGroup].filter(Boolean)}
+                className="sidebar-menu"
+            >
+                {groups.map((group) => {
+                    const Icon = group.Icon;
+
+                    return (
+                        <Accordion.Item
+                            key={group.key}
+                            eventKey={group.key}
+                        >
+                            <Accordion.Header onClick={()=>{if(collapsed)setCollapsed(false)}}>
+                                <div className="accordion-title">
+                                    <Icon />
+                                    {!collapsed && (
+                                        <span>
+                                            {group.title}
+                                        </span>
+                                    )}
+                                </div>
+                            </Accordion.Header>
+
+                            <Accordion.Body>
+                                {renderMenuItems(group.items)}
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    );
+                })}
+            </Accordion>
+            {!groups.length&&!collapsed&&<p className="ox-no-modules">No matching modules.</p>}
+            {!collapsed&&<div className="ox-sidebar-foot"><b>THETAVEGA</b><span>Connected manufacturing. Clear decisions.</span></div>}
+        </div>
+    );
+}

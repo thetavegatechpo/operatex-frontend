@@ -1,0 +1,39 @@
+.signal-mapping {
+    padding-top: 8px;
+}
+
+.signal-mapping .card,
+.signal-mapping .modal-content {
+    border-radius: 14px;
+}
+
+.signal-mapping .modal-content {
+    border: 0;
+}
+
+.signal-mapping .form-label {
+    font-weight: 600;
+    color: var(--bs-body-color);
+}
+
+.signal-mapping .form-control,
+.signal-mapping .form-select {
+    min-height: 42px;
+}
+
+.signal-mapping textarea.form-control {
+    min-height: auto;
+}
+
+.signal-mapping .table td,
+.signal-mapping .table th {
+    vertical-align: middle;
+}
+
+.signal-mapping .config-header {
+    background: var(--bs-tertiary-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+}

@@ -1,0 +1,222 @@
+/* ============================================================
+   NET GATEWAY
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page {
+    padding-top: 4px;
+}
+
+
+/* ============================================================
+   SUMMARY CARDS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-summary-card {
+    border: 0;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(34, 44, 84, 0.07);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(34, 44, 84, 0.10);
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-summary-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #7c849d;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-summary-value {
+    margin-top: 4px;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: #222b49;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-summary-help {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #8b93aa;
+}
+
+
+/* ============================================================
+   TAB BAR
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-tab-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+}
+
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-section-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #252e50;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-section-subtitle {
+    margin-top: 3px;
+    font-size: 13px;
+    color: #7d86a0;
+}
+
+
+/* ============================================================
+   COMMON CARD POLISH
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .card {
+    border-radius: 15px;
+}
+
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .table {
+    margin-bottom: 0;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .table thead th {
+    padding: 13px 14px;
+    background: #252e50;
+    color: #ffffff;
+    border: 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .table tbody td {
+    padding: 13px 14px;
+    vertical-align: middle;
+    color: #4f5975;
+    font-size: 13px;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .table tbody tr {
+    transition:
+        background-color 0.15s ease;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .table tbody tr:hover {
+    background: #fafaff;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .btn {
+    border-radius: 10px;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .btn-primary {
+    box-shadow: 0 5px 14px rgba(79, 70, 229, 0.16);
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .form-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #505a77;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .form-control,
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .form-select {
+    min-height: 42px;
+    border-radius: 10px;
+    border-color: #dfe4ef;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page textarea.form-control {
+    min-height: auto;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .form-control:focus,
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .form-select:focus {
+    border-color: #7567f5;
+    box-shadow:
+        0 0 0 0.2rem rgba(117, 103, 245, 0.10);
+}
+
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .modal-content {
+    border: 0;
+    border-radius: 16px;
+    box-shadow:
+        0 20px 60px rgba(25, 32, 61, 0.18);
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .modal-header {
+    border-bottom: 1px solid #eef0f6;
+}
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .modal-footer {
+    border-top: 1px solid #eef0f6;
+}
+
+
+/* ============================================================
+   STATUS / BADGES
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page .badge {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+    :where(body:has([data-operatex-feature="net-gateway"])) .net-tab-bar {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    :where(body:has([data-operatex-feature="net-gateway"])) .net-gateway-page {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    :where(body:has([data-operatex-feature="net-gateway"])) .net-summary-value {
+        font-size: 24px;
+    }
+
+}

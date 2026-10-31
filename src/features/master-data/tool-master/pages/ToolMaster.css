@@ -1,0 +1,21 @@
+/* src/pages/ToolMaster/ToolMaster.css */
+
+.tool-master {
+    width: 100%;
+}
+
+.tool-master .table-responsive {
+    overflow-x: auto;
+}
+
+.tool-master .modal-body {
+    overflow-x: auto;
+}
+
+.tool-master textarea {
+    resize: vertical;
+}
+
+.tool-master .badge {
+    white-space: nowrap;
+}

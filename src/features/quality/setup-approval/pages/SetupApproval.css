@@ -1,0 +1,1461 @@
+
+/* ==========================================================
+   OPERATEX MES - SETUP APPROVAL
+   Gauge/SPC-inspired industrial dashboard styling
+   ========================================================== */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+  --sa-primary: #00899b;
+  --sa-primary-dark: #006f82;
+  --sa-primary-light: #e9f8fa;
+  --sa-title: #142d4e;
+  --sa-text: #30465f;
+  --sa-muted: #72839a;
+  --sa-border: #dfe7ef;
+  --sa-background: #f4f7fb;
+  --sa-white: #ffffff;
+  --sa-success: #169568;
+  --sa-danger: #dc4c55;
+  --sa-warning: #e8a63a;
+
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  background: var(--sa-background);
+  color: var(--sa-text);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 13px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page *,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page *::before,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page *::after {
+  box-sizing: border-box;
+}
+
+/* ================= HEADER ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header > div {
+  min-width: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header small {
+  display: block;
+  color: var(--sa-primary);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header h1 {
+  color: var(--sa-title);
+  font-size: clamp(23px, 2.5vw, 30px);
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 7px 0 6px;
+  letter-spacing: -0.5px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header p {
+  margin: 0;
+  color: var(--sa-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ================= BUTTONS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 9px 15px;
+  background: #ffffff;
+  border: 1px solid var(--sa-border);
+  border-radius: 9px;
+  color: var(--sa-title);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button:hover:not(:disabled) {
+  background: var(--sa-primary-light);
+  border-color: #a7dce3;
+  color: var(--sa-primary-dark);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button:focus-visible {
+  outline: 3px solid #b8e4ed;
+  outline-offset: 2px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button[type="submit"],
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page .sa-actions button:first-child,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel > button {
+  background: var(--sa-primary);
+  border-color: var(--sa-primary);
+  color: #ffffff;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button[type="submit"]:hover:not(:disabled),
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page .sa-actions button:first-child:hover:not(:disabled),
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel > button:hover:not(:disabled) {
+  background: var(--sa-primary-dark);
+  border-color: var(--sa-primary-dark);
+  color: #ffffff;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button.danger {
+  background: #fff0f1;
+  border-color: #ffd5d8;
+  color: #d23f49;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button.danger:hover:not(:disabled) {
+  background: #ffe3e6;
+  border-color: #f4b2b9;
+  color: #b72f3a;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header > button {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(20, 45, 78, 0.05);
+}
+
+/* ================= ALERTS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-error,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-success {
+  padding: 13px 16px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-error {
+  color: #b4232d;
+  background: #fff1f2;
+  border: 1px solid #fac9ce;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-success {
+  color: #13774d;
+  background: #e9f9f0;
+  border: 1px solid #b9e7ca;
+}
+
+/* ================= TOP NAVIGATION TABS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 7px;
+  margin-bottom: 23px;
+  background: #ffffff;
+  border: 1px solid var(--sa-border);
+  border-radius: 13px;
+  box-shadow: 0 3px 14px rgba(20, 45, 78, 0.035);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button {
+  flex: 0 1 auto;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  padding: 11px 15px;
+  color: #647790;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button svg {
+  flex-shrink: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button:hover:not(:disabled) {
+  background: #eff8fa;
+  color: var(--sa-primary);
+  border-color: transparent;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button.active,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button.active:hover:not(:disabled) {
+  color: #ffffff;
+  background: var(--sa-primary);
+  border-color: var(--sa-primary);
+  box-shadow: 0 3px 9px rgba(0, 137, 155, 0.18);
+}
+
+/* ================= KPI SUMMARY CARDS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 23px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat {
+  position: relative;
+  min-width: 0;
+  padding: 21px 22px;
+  background: #ffffff;
+  border: 1px solid var(--sa-border);
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(26, 51, 85, 0.045);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 22px rgba(26, 51, 85, 0.08);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--sa-primary);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(2)::before {
+  background: var(--sa-warning);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(3)::before {
+  background: var(--sa-success);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(4)::before {
+  background: var(--sa-danger);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat span {
+  display: block;
+  color: #71839a;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat strong {
+  display: block;
+  margin-top: 14px;
+  color: var(--sa-title);
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(2) strong {
+  color: #bf8528;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(3) strong {
+  color: #16845b;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(4) strong {
+  color: #d84953;
+}
+
+/* ================= CONTENT PANELS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel {
+  margin-bottom: 21px;
+  padding: 23px;
+  background: #ffffff;
+  border: 1px solid var(--sa-border);
+  border-radius: 14px;
+  box-shadow: 0 4px 17px rgba(26, 51, 85, 0.04);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding-bottom: 15px;
+  color: var(--sa-title);
+  border-bottom: 1px solid #edf1f6;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel h2::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 21px;
+  border-radius: 4px;
+  background: var(--sa-primary);
+  flex-shrink: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel h3 {
+  margin: 12px 0;
+  color: var(--sa-title);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel > p {
+  margin: 0 0 19px;
+  color: var(--sa-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ================= FORMS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px 21px;
+  align-items: end;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  color: #40546d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field > span {
+  display: block;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field select,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 41px;
+  padding: 10px 12px;
+  background: #fbfcfe;
+  border: 1px solid #d9e3ed;
+  border-radius: 8px;
+  color: #263d57;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input::placeholder,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea::placeholder {
+  color: #a1adbb;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input:hover,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field select:hover,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea:hover {
+  border-color: #a9c5d4;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input:focus,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field select:focus,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea:focus {
+  outline: none;
+  border-color: var(--sa-primary);
+  box-shadow: 0 0 0 3px rgba(0, 137, 155, 0.11);
+  background: #ffffff;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input:disabled,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field select:disabled,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea:disabled {
+  background: #f0f3f6;
+  color: #8c9caf;
+  cursor: not-allowed;
+}
+
+/* ================= CHECKBOXES ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 41px;
+  cursor: pointer;
+  color: #40546d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-check input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--sa-primary);
+  cursor: pointer;
+}
+
+/* ================= FORM ACTIONS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 12px 0 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form > button {
+  width: fit-content;
+  min-width: 135px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-wide {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-inline {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-inline .sa-field {
+  flex: 1 1 250px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-inline button {
+  flex-shrink: 0;
+}
+
+/* ================= DATA TABLES ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e7edf4;
+  border-radius: 10px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page table {
+  width: 100%;
+  min-width: 690px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: white;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page thead {
+  background: #f2f7fb;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page th {
+  padding: 15px 14px;
+  background: #f2f7fb;
+  border-bottom: 1px solid #dfe7ef;
+  color: #526985;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page td {
+  padding: 14px;
+  border-bottom: 1px solid #edf1f6;
+  color: #3b5069;
+  font-size: 12px;
+  font-weight: 500;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page tbody tr:last-child td {
+  border-bottom: none;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page tbody tr:hover {
+  background: #f8fcfd;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page td:first-child {
+  max-width: 300px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page td .sa-actions {
+  margin: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page td button {
+  min-height: 32px;
+  padding: 6px 12px;
+  font-size: 11px;
+}
+
+/* ================= WORKFLOW LEVELS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stage {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  align-items: end;
+  gap: 14px;
+  margin: 13px 0;
+  padding: 17px;
+  background: #f8fbfd;
+  border: 1px solid #e0eaf0;
+  border-left: 3px solid var(--sa-primary);
+  border-radius: 10px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stage > strong {
+  align-self: center;
+  color: var(--sa-primary-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* ================= INSPECTION CHECKPOINTS ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px 18px;
+  margin: 14px 0;
+  padding: 20px;
+  background: #f9fbfe;
+  border: 1px solid #e0e9f2;
+  border-radius: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint > div:first-child strong {
+  display: block;
+  color: var(--sa-title);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint > div:first-child p {
+  margin: 7px 0;
+  color: #637890;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint small {
+  display: inline-block;
+  color: var(--sa-primary-dark);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint > button {
+  align-self: end;
+  width: fit-content;
+  background: var(--sa-primary);
+  border-color: var(--sa-primary);
+  color: #ffffff;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint > button:hover:not(:disabled) {
+  background: var(--sa-primary-dark);
+  color: #ffffff;
+}
+
+/* ================= STATUS BADGES ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 6px 11px;
+  border-radius: 20px;
+  background: #eef2f6;
+  color: #66788e;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.ok,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.approved,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.complete,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.completed {
+  color: #137d54;
+  background: #e2f7eb;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.nok,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.rejected,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.failed {
+  color: #ca3541;
+  background: #ffebed;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.pending,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.running {
+  color: #ad781f;
+  background: #fff1d7;
+}
+
+/* ================= HELPER TEXT ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-hint {
+  margin: 12px 0;
+  color: #71849c;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* ================= APPROVAL MODAL ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(14, 29, 50, 0.58);
+  backdrop-filter: blur(3px);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dialog {
+  width: min(100%, 500px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 27px;
+  border-radius: 15px;
+  background: #ffffff;
+  border: 1px solid #e2e9f1;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.2);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dialog h2 {
+  margin: 0 0 12px;
+  color: var(--sa-title);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dialog p {
+  color: #63748b;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dialog .sa-field {
+  margin: 18px 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dialog .sa-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+    gap: 6px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button {
+    font-size: 11px;
+    padding: 10px 12px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+    gap: 12px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stat {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+    padding: 18px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-form,
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint {
+    grid-template-columns: 1fr;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stage {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stage > strong {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+    padding: 12px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-header {
+    align-items: flex-start;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-header h1 {
+    font-size: 23px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-header > button {
+    width: 100%;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 6px;
+    gap: 6px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stat {
+    padding: 15px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stat strong {
+    font-size: 24px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-panel {
+    padding: 15px;
+    border-radius: 11px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-panel h2 {
+    font-size: 15px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stage {
+    grid-template-columns: 1fr;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-inline .sa-field,
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-inline button {
+    width: 100%;
+    flex: none;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-dialog {
+    padding: 19px;
+  }
+}
+
+/* ================= SAFETY / OVERFLOW ================= */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stage,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-table-scroll {
+  min-width: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page input,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page select,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page textarea {
+  max-width: 100%;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page svg {
+  flex-shrink: 0;
+}
+
+/* Mandatory field asterisk */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-required {
+  color: #dc3545;
+  font-size: 14px;
+  font-weight: 800;
+  margin-left: 3px;
+}
+
+/* Status labels */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.active {
+  background: #e5f8ee;
+  color: #168453;
+  border: 1px solid #b9e8cf;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.inactive {
+  background: #f0f2f5;
+  color: #66758a;
+  border: 1px solid #dce2e9;
+}
+
+/* Date and time inputs */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page input[type="datetime-local"] {
+  min-height: 42px;
+  color: #263d57;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page input[type="datetime-local"]:focus {
+  border-color: #00899b;
+  box-shadow: 0 0 0 3px rgba(0, 137, 155, 0.12);
+}
+
+/* ===== SIMPLE LINE-WISE SETUP APPROVAL UI ===== */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+  max-width: 100%;
+  padding: 18px;
+}
+
+/* Every form field on a separate line */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 15px;
+  align-items: stretch;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form > *,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form .sa-field,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form .sa-check {
+  min-width: 0;
+  width: 100%;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form > button,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form .sa-actions {
+  width: fit-content;
+}
+
+/* Forms and panels */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel {
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field {
+  gap: 6px;
+  font-size: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field select,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea {
+  min-height: 42px;
+  border-radius: 7px;
+}
+
+/* Simpler navigation, one horizontal line */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 6px;
+  scrollbar-width: thin;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button {
+  flex: 0 0 auto;
+  padding: 10px 12px;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+/* Each checkpoint appears vertically */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 17px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint > div,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint .sa-field {
+  width: 100%;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint > button {
+  align-self: flex-start;
+}
+
+/* Workflow stage fields vertically */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stage .sa-field {
+  width: 100%;
+}
+
+/* Compact summary */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat strong {
+  font-size: 25px;
+}
+
+/* Approval cards */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-approval-list {
+  display: grid;
+  gap: 10px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-approval-card {
+  border: 1px solid #dfe8f1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-approval-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-approval-card-header strong {
+  color: #163252;
+  font-size: 14px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-detail-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-detail-line span {
+  color: #718198;
+  font-size: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-detail-line strong {
+  color: #193956;
+  font-size: 12px;
+  text-align: right;
+}
+
+/* Small visual summary bar */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-track {
+  width: 100%;
+  height: 9px;
+  display: flex;
+  overflow: hidden;
+  background: #edf2f7;
+  border-radius: 20px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment {
+  height: 100%;
+  transition: width 0.25s ease;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment.approved {
+  background: #169568;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment.pending {
+  background: #e8a63a;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment.rejected {
+  background: #dc4c55;
+}
+
+@media (max-width: 800px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+    padding: 10px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-panel {
+    padding: 14px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button {
+    width: auto;
+  }
+}
+
+/* ===========================================================
+   OPERATEX SETUP APPROVAL — UNIFIED INDUSTRIAL DESIGN
+   Graphite + Lime + Warm Off-White + Montserrat
+   =========================================================== */
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+  --sa-primary: #d2ed65;
+  --sa-primary-dark: #b8d842;
+  --sa-primary-light: #f2f8d7;
+  --sa-title: #202b30;
+  --sa-text: #344555;
+  --sa-muted: #74818d;
+  --sa-border: #dce2e6;
+  --sa-background: #f5f5f0;
+  --sa-white: #ffffff;
+
+  background: var(--sa-background);
+  color: var(--sa-text);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  padding: 22px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header {
+  background: #ffffff;
+  border: 1px solid var(--sa-border);
+  border-radius: 11px;
+  padding: 20px 22px;
+  margin-bottom: 17px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header small {
+  color: #81992e;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-header h1,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel h2 {
+  color: #202b30;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+  background: #ffffff;
+  border: 1px solid var(--sa-border);
+  border-radius: 10px;
+  padding: 12px;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button {
+  background: #ffffff;
+  border: 1px solid #d8dee5;
+  color: #31425c;
+  padding: 10px 14px;
+  border-radius: 7px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button.active,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button.active:hover:not(:disabled) {
+  background: #f0f3f7;
+  color: #234263;
+  border: 1px solid #46617f;
+  box-shadow: none;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs button:hover:not(:disabled) {
+  background: #f4f7e9;
+  color: #27351c;
+  border-color: #b7ca78;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel {
+  background: #ffffff;
+  border: 1px solid #dce2e6;
+  box-shadow: none;
+  border-radius: 11px;
+  padding: 21px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel h2::before {
+  background: #a6c537;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button[type="submit"],
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page .sa-actions button:first-child,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel > button,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page .sa-checkpoint > button {
+  background: #d2ed65;
+  border: 1px solid #bddb4c;
+  color: #26311c;
+  box-shadow: none;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page button[type="submit"]:hover:not(:disabled),
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page .sa-actions button:first-child:hover:not(:disabled),
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-panel > button:hover:not(:disabled),
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page .sa-checkpoint > button:hover:not(:disabled) {
+  background: #b8d842;
+  border-color: #a7c833;
+  color: #26311c;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field input:focus,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field select:focus,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-field textarea:focus {
+  border-color: #a5bd46;
+  box-shadow: 0 0 0 3px rgba(184, 216, 66, 0.13);
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-check input {
+  accent-color: #a0be31;
+}
+
+/* KPIs */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px;
+  border: 1px solid #dce2e6;
+  background: #ffffff;
+  border-radius: 9px;
+  box-shadow: none;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat::before {
+  display: none;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-kpi-icon {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6d8b28;
+  background: #f0f6d9;
+  border-radius: 7px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat strong,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(2) strong,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(3) strong,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat:nth-child(4) strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: #202b30;
+  margin: 0 0 4px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stat span {
+  text-transform: none;
+  color: #74818d;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Visualization */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-summary {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 0 16px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-value {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 115px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-value strong {
+  color: #202b30;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-value span {
+  color: #77848e;
+  font-size: 11px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-content {
+  flex: 1;
+  min-width: 0;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-track {
+  height: 12px;
+  display: flex;
+  width: 100%;
+  background: #eef1e8;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment.approved {
+  background: #87b744;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment.pending {
+  background: #e4b84b;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-progress-segment.rejected {
+  background: #dc7070;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 13px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #61707a;
+  font-size: 11px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dot.approved {
+  background: #87b744;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dot.pending {
+  background: #e4b84b;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-dot.rejected {
+  background: #dc7070;
+}
+
+/* Reports */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-report-header p {
+  margin: 0;
+  color: #72808a;
+  font-size: 12px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page th {
+  background: #f1f3ed;
+  color: #526241;
+  border-bottom: 1px solid #b5c09e;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-page tbody tr:hover {
+  background: #fafcf5;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-empty {
+  text-align: center;
+  padding: 30px 16px !important;
+  color: #7d878b !important;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.active,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.approved,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.ok {
+  background: #edf7dd;
+  color: #4c842a;
+  border-color: #cce5b4;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.pending {
+  background: #fff5df;
+  color: #a47b24;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.rejected,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-status.nok {
+  background: #fff0f0;
+  color: #bd4949;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-required {
+  color: #d64b4b;
+}
+
+/* Keep all configuration forms line-wise */
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-form {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 15px;
+}
+
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-stage,
+:where(body:has([data-operatex-feature="setup-approval"])) .sa-checkpoint {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fbfcf8;
+  border-color: #e0e5db;
+}
+
+@media (max-width: 850px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-chart-summary {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-page {
+    padding: 10px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-header {
+    padding: 15px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stats {
+    gap: 8px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stat {
+    padding: 11px;
+    gap: 8px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-kpi-icon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-stat strong {
+    font-size: 20px;
+  }
+
+  :where(body:has([data-operatex-feature="setup-approval"])) .sa-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}

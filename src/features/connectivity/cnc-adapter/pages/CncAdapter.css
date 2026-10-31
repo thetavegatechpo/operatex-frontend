@@ -1,0 +1,1529 @@
+/* src/pages/CncAdapter/CncAdapter.css */
+
+/* ============================================================
+   OPERATEX MES
+   CONNECTIVITY
+   CNC ADAPTER
+   ============================================================ */
+
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page {
+
+    --cnc-bg:
+        #f5f5fb;
+
+    --cnc-surface:
+        #ffffff;
+
+    --cnc-surface-soft:
+        #fafaff;
+
+    --cnc-primary:
+        #4f46c8;
+
+    --cnc-primary-dark:
+        #3f36ad;
+
+    --cnc-primary-soft:
+        #eeecff;
+
+    --cnc-primary-border:
+        #d9d5ff;
+
+    --cnc-navy:
+        #11162b;
+
+    --cnc-navy-soft:
+        #1c2340;
+
+    --cnc-text:
+        #171c32;
+
+    --cnc-text-secondary:
+        #697089;
+
+    --cnc-border:
+        #e6e7ef;
+
+    --cnc-border-dark:
+        #d7d9e4;
+
+    --cnc-success:
+        #17985b;
+
+    --cnc-success-soft:
+        #eaf8f1;
+
+    --cnc-danger:
+        #d94a59;
+
+    --cnc-warning:
+        #d89b24;
+
+    --cnc-shadow:
+        0 4px 18px rgba(
+            28,
+            31,
+            55,
+            0.07
+        );
+
+    --cnc-shadow-hover:
+        0 8px 24px rgba(
+            28,
+            31,
+            55,
+            0.10
+        );
+
+
+    width:
+        100%;
+
+    min-height:
+        100%;
+
+    padding:
+        4px 2px 24px;
+
+    color:
+        var(--cnc-text);
+}
+
+
+/* ============================================================
+   PAGE BACKGROUND
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page::before {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        -1;
+
+    background:
+        var(--cnc-bg);
+}
+
+
+/* ============================================================
+   COMMON CARDS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card {
+
+    background:
+        var(--cnc-surface);
+
+    border:
+        1px solid var(--cnc-border) !important;
+
+    border-radius:
+        14px;
+
+    box-shadow:
+        var(--cnc-shadow) !important;
+
+    overflow:
+        hidden;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page h1,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page h2,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page h3,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page h4,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page h5,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page h6 {
+
+    color:
+        var(--cnc-text);
+
+    font-weight:
+        650;
+}
+
+
+/* ============================================================
+   SUMMARY CARDS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .card {
+
+    min-height:
+        100px;
+
+    border:
+        1px solid var(--cnc-border) !important;
+
+    border-radius:
+        14px;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .card:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        var(--cnc-primary-border) !important;
+
+    box-shadow:
+        var(--cnc-shadow-hover) !important;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .card-body {
+
+    position:
+        relative;
+
+    padding:
+        20px 22px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .card-body::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        18px;
+
+    bottom:
+        18px;
+
+    width:
+        4px;
+
+    border-radius:
+        0 4px 4px 0;
+
+    background:
+        var(--cnc-primary);
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .text-muted {
+
+    color:
+        var(--cnc-text-secondary) !important;
+
+    font-size:
+        12px !important;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.25px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        7px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .fs-4 {
+
+    color:
+        var(--cnc-navy);
+
+    font-size:
+        27px !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.1;
+}
+
+
+/* ============================================================
+   TAB AREA
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card .d-flex.flex-wrap.gap-2 {
+
+    gap:
+        10px !important;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card .d-flex.flex-wrap.gap-2 .btn {
+
+    min-height:
+        42px;
+
+    padding:
+        9px 18px;
+
+    border-radius:
+        9px;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.1px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        3px;
+
+    transition:
+        all 0.18s ease;
+}
+
+
+/* ============================================================
+   PRIMARY BUTTON
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-primary {
+
+    background:
+        var(--cnc-primary) !important;
+
+    border-color:
+        var(--cnc-primary) !important;
+
+    color:
+        #ffffff !important;
+
+    box-shadow:
+        0 3px 9px rgba(
+            79,
+            70,
+            200,
+            0.20
+        );
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-primary:hover,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-primary:focus {
+
+    background:
+        var(--cnc-primary-dark) !important;
+
+    border-color:
+        var(--cnc-primary-dark) !important;
+
+    box-shadow:
+        0 5px 14px rgba(
+            79,
+            70,
+            200,
+            0.26
+        );
+
+    transform:
+        translateY(-1px);
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-primary:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* ============================================================
+   OUTLINE PRIMARY BUTTON
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-outline-primary {
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid var(--cnc-primary-border);
+
+    color:
+        var(--cnc-primary);
+
+    font-weight:
+        600;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-outline-primary:hover,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn-outline-primary:focus {
+
+    background:
+        var(--cnc-primary-soft);
+
+    border-color:
+        var(--cnc-primary);
+
+    color:
+        var(--cnc-primary-dark);
+}
+
+
+/* ============================================================
+   GENERAL BUTTON
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn {
+
+    border-radius:
+        8px;
+
+    font-weight:
+        600;
+
+    transition:
+        all 0.16s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn:focus {
+
+    box-shadow:
+        0 0 0 3px rgba(
+            79,
+            70,
+            200,
+            0.12
+        );
+}
+
+
+/* ============================================================
+   SECTION HEADER CARD
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card-body {
+
+    padding:
+        18px 20px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card-body .fs-5 {
+
+    color:
+        var(--cnc-navy);
+
+    font-size:
+        17px !important;
+
+    font-weight:
+        700 !important;
+
+    margin-bottom:
+        3px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card-body .text-muted {
+
+    color:
+        var(--cnc-text-secondary) !important;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.45;
+}
+
+
+/* ============================================================
+   SEARCH TOOLBAR
+   ============================================================ */
+
+/*
+   SearchToolbar is a shared component.
+   These selectors intentionally remain under .cnc-adapter-page.
+*/
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page input.form-control,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page select.form-select {
+
+    min-height:
+        42px;
+
+    border:
+        1px solid var(--cnc-border-dark);
+
+    border-radius:
+        9px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--cnc-text);
+
+    font-size:
+        13px;
+
+    box-shadow:
+        none;
+
+    transition:
+        border-color 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page input.form-control::placeholder {
+
+    color:
+        #9a9fb1;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page input.form-control:hover,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page select.form-select:hover {
+
+    border-color:
+        #c9cad8;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page input.form-control:focus,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page select.form-select:focus {
+
+    border-color:
+        var(--cnc-primary);
+
+    box-shadow:
+        0 0 0 3px rgba(
+            79,
+            70,
+            200,
+            0.10
+        );
+}
+
+
+/* ============================================================
+   TABLE CONTAINER
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table-responsive {
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid var(--cnc-border);
+
+    border-radius:
+        13px;
+
+    overflow:
+        auto;
+
+    box-shadow:
+        var(--cnc-shadow);
+}
+
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table {
+
+    margin-bottom:
+        0;
+
+    color:
+        var(--cnc-text);
+
+    vertical-align:
+        middle;
+}
+
+
+/* ============================================================
+   TABLE HEADER
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table thead th {
+
+    background:
+        var(--cnc-navy) !important;
+
+    color:
+        #ffffff !important;
+
+    border:
+        none !important;
+
+    padding:
+        13px 15px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.45px;
+
+    text-transform:
+        uppercase;
+
+    vertical-align:
+        middle;
+
+    white-space:
+        nowrap;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table thead th:first-child {
+
+    border-top-left-radius:
+        11px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table thead th:last-child {
+
+    border-top-right-radius:
+        11px;
+}
+
+
+/* ============================================================
+   TABLE BODY
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table tbody td {
+
+    padding:
+        13px 15px;
+
+    border-color:
+        #ececf3;
+
+    color:
+        #34384c;
+
+    font-size:
+        12.5px;
+
+    background:
+        #ffffff;
+
+    vertical-align:
+        middle;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table tbody tr {
+
+    transition:
+        background-color 0.14s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table tbody tr:hover td {
+
+    background:
+        #fafaff;
+}
+
+
+/* ============================================================
+   FIRST COLUMN EMPHASIS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table tbody td:first-child {
+
+    color:
+        var(--cnc-navy);
+
+    font-weight:
+        600;
+}
+
+
+/* ============================================================
+   UUID / LONG VALUE HANDLING
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table td {
+
+    max-width:
+        250px;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table .btn-sm {
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    padding:
+        0;
+
+    border-radius:
+        7px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin:
+        0 3px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #dfe1eb;
+
+    transition:
+        all 0.15s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table .btn-sm:hover {
+
+    transform:
+        translateY(-1px);
+
+    border-color:
+        var(--cnc-primary-border);
+
+    background:
+        var(--cnc-primary-soft);
+}
+
+
+/* ============================================================
+   EDIT ACTION
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table .btn-outline-primary {
+
+    color:
+        var(--cnc-primary);
+
+    border-color:
+        #dddafa;
+}
+
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .badge {
+
+    padding:
+        6px 10px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.25px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* ACTIVE / OK / GOOD */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .badge.bg-success {
+
+    background:
+        var(--cnc-success-soft) !important;
+
+    color:
+        var(--cnc-success) !important;
+
+    border:
+        1px solid #c8eedb;
+}
+
+
+/* DANGER / NOK / ERROR */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .badge.bg-danger {
+
+    background:
+        #fff0f2 !important;
+
+    color:
+        var(--cnc-danger) !important;
+
+    border:
+        1px solid #f6cfd4;
+}
+
+
+/* WARNING */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .badge.bg-warning {
+
+    background:
+        #fff8e6 !important;
+
+    color:
+        #9a6a00 !important;
+
+    border:
+        1px solid #f4e2a8;
+}
+
+
+/* SECONDARY / INACTIVE */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .badge.bg-secondary {
+
+    background:
+        #f0f1f5 !important;
+
+    color:
+        #64697a !important;
+
+    border:
+        1px solid #dedfe7;
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table tbody td[colspan] {
+
+    padding:
+        44px 20px !important;
+
+    color:
+        #8b90a3;
+
+    font-size:
+        13px;
+
+    text-align:
+        center;
+
+    background:
+        #ffffff !important;
+}
+
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page * {
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        #c6c7d5
+        #f3f4f8;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page *::-webkit-scrollbar {
+
+    width:
+        7px;
+
+    height:
+        7px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page *::-webkit-scrollbar-track {
+
+    background:
+        #f3f4f8;
+
+    border-radius:
+        10px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page *::-webkit-scrollbar-thumb {
+
+    background:
+        #c6c7d5;
+
+    border-radius:
+        10px;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page *::-webkit-scrollbar-thumb:hover {
+
+    background:
+        #aaaebe;
+}
+
+
+/* ============================================================
+   LOADING / DISABLED STATE
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .btn:disabled {
+
+    opacity:
+        0.55;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none !important;
+}
+
+
+/* ============================================================
+   FORM LABELS INSIDE PAGE
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .form-label {
+
+    color:
+        #33384e;
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    margin-bottom:
+        6px;
+}
+
+
+/* ============================================================
+   MODAL LOOK
+   ------------------------------------------------------------
+   React-Bootstrap modal is commonly rendered outside the page
+   container, so these classes are intentionally modal-specific.
+   They will keep the same OperateX style as your screenshots.
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-content {
+
+    border:
+        1px solid #e2e3ec;
+
+    border-radius:
+        16px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 20px 55px rgba(
+            19,
+            22,
+            42,
+            0.18
+        );
+
+    overflow:
+        hidden;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-header {
+
+    padding:
+        18px 22px;
+
+    background:
+        #ffffff;
+
+    border-bottom:
+        1px solid #ececf3;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-title {
+
+    color:
+        #171c32;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-header .btn-close {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    border-radius:
+        8px;
+
+    background-size:
+        11px;
+
+    opacity:
+        0.55;
+
+    transition:
+        background-color 0.15s ease,
+        opacity 0.15s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-header .btn-close:hover {
+
+    background-color:
+        #f1f1f7;
+
+    opacity:
+        0.9;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body {
+
+    padding:
+        22px;
+
+    background:
+        #ffffff;
+
+    max-height:
+        calc(100vh - 200px);
+
+    overflow-y:
+        auto;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer {
+
+    padding:
+        15px 22px;
+
+    background:
+        #fbfbfd;
+
+    border-top:
+        1px solid #ececf3;
+}
+
+
+/* ============================================================
+   MODAL FORM LABEL
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-label {
+
+    color:
+        #30354a;
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    margin-bottom:
+        6px;
+}
+
+
+/* ============================================================
+   MODAL INPUTS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-control,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-select {
+
+    min-height:
+        42px;
+
+    border:
+        1px solid #d9dbe5;
+
+    border-radius:
+        8px;
+
+    background:
+        #ffffff;
+
+    color:
+        #252a40;
+
+    font-size:
+        13px;
+
+    box-shadow:
+        none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-control:hover,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-select:hover {
+
+    border-color:
+        #c8cad7;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-control:focus,
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .form-select:focus {
+
+    border-color:
+        #4f46c8;
+
+    box-shadow:
+        0 0 0 3px rgba(
+            79,
+            70,
+            200,
+            0.10
+        );
+}
+
+
+/* ============================================================
+   JSON / LARGE TEXT FIELDS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body textarea.form-control {
+
+    min-height:
+        90px;
+
+    resize:
+        vertical;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.5;
+
+    background:
+        #fbfbfe;
+}
+
+
+/* ============================================================
+   MODAL BUTTONS
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer .btn {
+
+    min-width:
+        95px;
+
+    min-height:
+        40px;
+
+    padding:
+        8px 17px;
+
+    border-radius:
+        8px;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer .btn-primary {
+
+    background:
+        #4f46c8 !important;
+
+    border-color:
+        #4f46c8 !important;
+
+    color:
+        #ffffff !important;
+
+    box-shadow:
+        0 4px 10px rgba(
+            79,
+            70,
+            200,
+            0.18
+        );
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer .btn-primary:hover {
+
+    background:
+        #3f36ad !important;
+
+    border-color:
+        #3f36ad !important;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer .btn-secondary {
+
+    background:
+        #ffffff;
+
+    color:
+        #4b5063;
+
+    border:
+        1px solid #d8d9e2;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer .btn-secondary:hover {
+
+    background:
+        #f4f4f8;
+
+    color:
+        #272b3c;
+}
+
+
+/* ============================================================
+   MODAL BACKDROP
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-backdrop.show {
+
+    opacity:
+        0.42;
+}
+
+
+/* ============================================================
+   RUNTIME / REPORT TABLE INSIDE MODAL
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .table-responsive {
+
+    border:
+        1px solid #e6e7ef;
+
+    border-radius:
+        10px;
+
+    overflow:
+        auto;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .table {
+
+    margin-bottom:
+        0;
+
+    vertical-align:
+        middle;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .table thead th {
+
+    background:
+        #11162b !important;
+
+    color:
+        #ffffff !important;
+
+    border:
+        none !important;
+
+    padding:
+        11px 13px;
+
+    font-size:
+        10.5px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.35px;
+
+    text-transform:
+        uppercase;
+
+    white-space:
+        nowrap;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .table tbody td {
+
+    padding:
+        11px 13px;
+
+    border-color:
+        #ececf3;
+
+    color:
+        #3e4254;
+
+    background:
+        #ffffff;
+
+    font-size:
+        12px;
+
+    vertical-align:
+        middle;
+}
+
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body .table tbody tr:hover td {
+
+    background:
+        #fafaff;
+}
+
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+
+:where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .toast {
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 10px 28px rgba(
+            18,
+            23,
+            45,
+            0.16
+        );
+}
+
+
+/* ============================================================
+   MOBILE / TABLET
+   ============================================================ */
+
+@media (
+    max-width: 991.98px
+) {
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page {
+
+        padding-bottom:
+            18px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .card-body {
+
+        padding:
+            16px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page > .row.g-3.mb-3 .card {
+
+        min-height:
+            92px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table thead th,
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table tbody td {
+
+        padding:
+            11px 12px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body {
+
+        padding:
+            18px;
+    }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (
+    max-width: 575.98px
+) {
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page {
+
+        padding:
+            0 0 16px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page
+    .card-body
+    .d-flex.justify-content-between {
+
+        align-items:
+            stretch !important;
+
+        flex-direction:
+            column;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page
+    .card-body
+    .d-flex.justify-content-between
+    .btn {
+
+        width:
+            100%;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page
+    .card
+    .d-flex.flex-wrap.gap-2
+    .btn {
+
+        flex:
+            1 1 100%;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .cnc-adapter-page .table {
+
+        min-width:
+            850px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-dialog {
+
+        margin:
+            10px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-body {
+
+        padding:
+            15px;
+    }
+
+
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-header,
+    :where(body:has([data-operatex-feature="cnc-adapter"]), body:has([data-operatex-feature="tool-life-monitoring"]), body:has([data-operatex-feature="tool-replacement"])) .modal-footer {
+
+        padding-left:
+            15px;
+
+        padding-right:
+            15px;
+    }
+}

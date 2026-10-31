@@ -1,0 +1,262 @@
+
+/* =========================================================
+   OPERATEX MES - TOOL LIFE MONITORING
+   Uses existing CNC Adapter design
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page {
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 24px;
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-header-actions .btn {
+    min-height: 42px;
+    white-space: nowrap;
+    padding: 9px 16px;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-company-select {
+    width: auto;
+    min-width: 190px;
+    max-width: 260px;
+    height: 42px;
+}
+
+/* =========================================================
+   TOOL CONSUMPTION
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-consumption {
+    width: 145px;
+    min-width: 125px;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-consumption .progress {
+    height: 7px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: #e8e9f1;
+    margin-bottom: 5px;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-consumption small {
+    font-size: 11px;
+    color: #697089;
+}
+
+/* =========================================================
+   REBASELINE WARNING
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tl-warning {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    background: #fff8e6;
+    border: 1px solid #f4e2a8;
+    border-radius: 9px;
+    color: #936900;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* =========================================================
+   DATA TABLE
+========================================================= */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table thead th {
+    white-space: nowrap;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table tbody td {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================================
+   TOOL REPLACEMENT ACTIONS - NEW
+========================================================= */
+
+/* Keep Replace and Rebaseline actions aligned */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .d-flex.flex-nowrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/*
+   CNC Adapter CSS uses fixed 34px action buttons.
+   Override it ONLY for the text-based Replace Tool button.
+*/
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-sm.text-nowrap {
+    width: auto !important;
+    min-width: 116px;
+    height: 34px;
+    padding: 0 12px !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 7px;
+}
+
+/* CRITICAL - Replace Tool */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-outline-danger.text-nowrap {
+    background: #fff0f2;
+    border: 1px solid #f1c5cc;
+    color: #c53649;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-outline-danger.text-nowrap:hover {
+    background: #fce1e5;
+    border-color: #d94a59;
+    color: #ad2539;
+}
+
+/* WARNING - Replace Tool */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-outline-warning.text-nowrap {
+    background: #fff8e6;
+    border: 1px solid #f4e2a8;
+    color: #936900;
+}
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-outline-warning.text-nowrap:hover {
+    background: #fff0c7;
+    border-color: #d89b24;
+    color: #805800;
+}
+
+/* Existing CNC Counter Rebaseline action */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-outline-primary {
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   TOOL REPLACEMENT MODAL - NEW
+========================================================= */
+
+/* Status alert inside replacement modal */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .tl-warning .badge {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 11px;
+}
+
+/* Read-only tool details */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .modal-body .form-control[readonly] {
+    background: #f7f8fc;
+    border-color: #e2e4ee;
+    color: #4b5063;
+    font-weight: 500;
+    cursor: default;
+}
+
+/* Replacement form text inputs */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .modal-body .form-control::placeholder {
+    color: #9a9fb1;
+    font-size: 12px;
+}
+
+/* Replacement reason field */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .modal-body textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Pending backend integration notice */
+
+:where(body:has([data-operatex-feature="tool-life-monitoring"])) .modal-body .alert-secondary {
+    background: #f5f5fb;
+    border: 1px solid #e6e7ef;
+    color: #697089;
+    border-radius: 9px;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+
+    :where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-section-header {
+        align-items: flex-start;
+    }
+
+    :where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+
+    :where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-header-actions .btn {
+        width: 100%;
+    }
+
+    :where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-company-select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    :where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .tl-consumption {
+        min-width: 110px;
+    }
+
+    :where(body:has([data-operatex-feature="tool-life-monitoring"])) .tool-life-page .table .btn-sm.text-nowrap {
+        min-width: 110px;
+        font-size: 11px;
+        padding: 0 8px !important;
+    }
+}

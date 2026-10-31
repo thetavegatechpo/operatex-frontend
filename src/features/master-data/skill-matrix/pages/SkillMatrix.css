@@ -1,0 +1,90 @@
+/* =========================================================
+   SKILL MATRIX TOAST
+========================================================= */
+
+.skill-matrix-toast {
+    min-width: 320px;
+    border: none !important;
+    border-radius: 10px !important;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22) !important;
+
+    opacity: 1 !important;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.skill-matrix-toast.bg-success {
+    background-color: #198754 !important;
+    color: #ffffff !important;
+}
+
+.skill-matrix-toast.bg-success .toast-body {
+    background-color: #198754 !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.skill-matrix-toast.bg-danger {
+    background-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+.skill-matrix-toast.bg-danger .toast-body {
+    background-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.skill-matrix-toast.bg-warning {
+    background-color: #f59e0b !important;
+    color: #212529 !important;
+}
+
+.skill-matrix-toast.bg-warning .toast-body {
+    background-color: #f59e0b !important;
+    color: #212529 !important;
+}
+
+
+/* =========================================================
+   INFO / PRIMARY
+========================================================= */
+
+.skill-matrix-toast.bg-primary {
+    background-color: #4f46e5 !important;
+    color: #ffffff !important;
+}
+
+.skill-matrix-toast.bg-primary .toast-body {
+    background-color: #4f46e5 !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.skill-matrix-toast .toast-body {
+    padding: 14px 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    opacity: 1 !important;
+}

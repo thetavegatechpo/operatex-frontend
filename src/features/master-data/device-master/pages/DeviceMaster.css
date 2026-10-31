@@ -1,0 +1,21 @@
+.device-master {
+    padding-top: 8px;
+}
+
+.device-master .card {
+    border-radius: 14px;
+}
+
+.device-master .modal-content {
+    border: 0;
+    border-radius: 14px;
+}
+
+.device-master .form-label {
+    font-weight: 600;
+}
+
+.device-master .form-control,
+.device-master .form-select {
+    min-height: 42px;
+}
