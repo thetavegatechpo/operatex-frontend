@@ -1,3 +1,5 @@
+import "../../EnterpriseSetupClean.css";
+import { getWorkspaceContext,getSelectedLocation } from "../../company-master/api/workspaceContext.js";
 
 import Table from '../../../../shared/components/SmartTable.jsx';
 import React, {
@@ -59,6 +61,9 @@ import "./LineMaster.css";
 
 
 function LineMaster() {
+    const [workspaceDefault,setWorkspaceDefault]=useState(null);
+    useEffect(()=>{let alive=true;getWorkspaceContext().then(ctx=>{if(alive)setWorkspaceDefault(getSelectedLocation(ctx) || ctx.locations?.find(x=>x.shop_id)||null);}).catch(console.error);return()=>{alive=false;};},[]);
+
 
     // =====================================================
     // Master Data
@@ -79,7 +84,7 @@ const [shops, setShops] = useState([]);
 const navigate = useNavigate();
     const [searchText, setSearchText] = useState("");
 
-    const [statusFilter, setStatusFilter] = useState("ALL");
+    const [statusFilter, setStatusFilter] = useState("ACTIVE");
 
     // =====================================================
     // Loading
@@ -430,15 +435,16 @@ const loadShops = async () => {
     // Reset Form
     // =====================================================
 
+    useEffect(()=>{if(!workspaceDefault)return;setFormData(old=>old.plant_id||old.shop_id?old:{...old,plant_id:workspaceDefault.plant_id||"",shop_id:workspaceDefault.shop_id||""});},[workspaceDefault]);
     const resetForm = () => {
 
         setEditId(null);
 
         setFormData({
 
-            plant_id: "",
+            plant_id: workspaceDefault?.plant_id || "",
 
-            shop_id: "",
+            shop_id: workspaceDefault?.shop_id || "",
 
             line_code: "",
 
@@ -552,11 +558,7 @@ const loadShops = async () => {
 
         const statusMatch =
 
-            statusFilter === "ALL"
-
-            ||
-
-            line.status === statusFilter;
+            String(line.status || "").toUpperCase() === "ACTIVE";
 
         return searchMatch && statusMatch;
 
@@ -932,7 +934,7 @@ const filteredShops = shops.filter(
             variant="success"
             onClick={() => navigate("/station-master")}
         >
-             <Plus />
+             
             {" "}
             Station Master
         </Button>
@@ -1279,45 +1281,7 @@ const filteredShops = shops.filter(
 
                         </Col>
 
-                        <Col md={2}>
-
-                            <Form.Select
-
-                                value={statusFilter}
-
-                                onChange={(e)=>
-
-                                    setStatusFilter(
-
-                                        e.target.value
-
-                                    )
-
-                                }
-
-                            >
-
-                                <option value="ALL">
-
-                                    All Status
-
-                                </option>
-
-                                <option value="ACTIVE">
-
-                                    ACTIVE
-
-                                </option>
-
-                                <option value="INACTIVE">
-
-                                    INACTIVE
-
-                                </option>
-
-                            </Form.Select>
-
-                        </Col>
+                        
 
                         <Col
 
@@ -1338,22 +1302,6 @@ const filteredShops = shops.filter(
                             >
 
                                 Refresh
-
-                            </Button>
-
-                          
-
-                            <Button
-
-                                variant="outline-primary"
-
-                                className="me-2"
-
-                                onClick={loadReport}
-
-                            >
-
-                                <FileText />
 
                             </Button>
 

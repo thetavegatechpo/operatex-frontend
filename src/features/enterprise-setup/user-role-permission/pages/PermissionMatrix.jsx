@@ -97,7 +97,7 @@ export default function PermissionMatrix() {
     <Card className="shadow-sm border-0 mb-4 rbac-matrix">
       <Card.Body>
         <div className="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
-          <div><h5 className="mb-1">Department Access Permissions</h5><div className="text-muted small">Select a role and tick the actions that department can use.</div></div>
+          <div><h5 className="mb-1">Department Access</h5><div className="text-muted small">Choose a department, then enable only the actions it needs.</div></div>
           <Button variant="outline-secondary" size="sm" disabled={loading || saving} onClick={() => reload()}>{loading ? "Loading..." : "Refresh"}</Button>
         </div>
         {notice && <Alert variant={notice.type} dismissible onClose={() => setNotice(null)}>{notice.text}</Alert>}
@@ -111,7 +111,7 @@ export default function PermissionMatrix() {
             {locked && <Alert variant="info">Admin and Manager always have full access. Their permissions cannot be reduced here.</Alert>}
             <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
               <div><Badge bg="secondary">{checked.length} granted</Badge> {changed && <Badge bg="warning" text="dark">Unsaved changes</Badge>}</div>
-              <Form.Control style={{ maxWidth: 320 }} aria-label="Search permission" placeholder="Search module or permission..." value={filter} onChange={e => setFilter(e.target.value)} />
+              <Form.Control style={{ maxWidth: 320 }} aria-label="Search permission" placeholder="Find a module..." value={filter} onChange={e => setFilter(e.target.value)} />
             </div>
             <div className="rbac-matrix-groups">
               {groups.map(([name, items]) => {
@@ -119,13 +119,13 @@ export default function PermissionMatrix() {
                 const allChecked = count === items.length;
                 return <section className="rbac-module" key={name}>
                   <div className="rbac-module-heading">
-                    <div><strong>{name}</strong> <span className="text-muted small ms-2">{count}/{items.length} selected</span></div>
+                    <div><strong>{name}</strong> <span className="text-muted small ms-2">{count} enabled</span></div>
                     {!locked && <Form.Check type="checkbox" label="Select all" checked={allChecked} disabled={saving} onChange={e => toggleGroup(items, e.target.checked)} />}
                   </div>
                   <div className="rbac-permissions-grid">
-                    {items.map(p => <label className="rbac-permission" key={p.permission_id}>
+                    {items.map(p => <label className="rbac-permission" title={p.permission_code} key={p.permission_id}>
                       <input type="checkbox" checked={locked || checkedSet.has(Number(p.permission_id))} disabled={locked || saving} onChange={e => toggle(Number(p.permission_id), e.target.checked)} />
-                      <span><strong>{p.action || p.permission_code}</strong><small className="text-muted">{p.permission_code}</small></span>
+                      <span><strong>{({VIEW:"View",CREATE:"Add",EDIT:"Edit",UPDATE:"Edit",EXECUTE:"Enter data",APPROVE:"Approve",CONFIG:"Configure",REPORT:"Reports",EXPORT:"Export",DELETE:"Delete",BYPASS:"Bypass",OVERRIDE:"Override",REVOKE:"Revoke"})[String(p.action || "").toUpperCase()] || String(p.action || p.permission_code).replaceAll("_", " ")}</strong></span>
                     </label>)}
                   </div>
                 </section>;

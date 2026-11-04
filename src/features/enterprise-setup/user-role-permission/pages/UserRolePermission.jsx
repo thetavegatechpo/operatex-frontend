@@ -1,3 +1,4 @@
+import "../../EnterpriseSetupClean.css";
 import React from 'react';
 
 import Table from '../../../../shared/components/SmartTable.jsx';
@@ -18,14 +19,7 @@ import {
 } from "react-bootstrap";
 
 import {
-    Plus,
-    Search,
-    ClockHistory,
-    PlayFill,
-    FileText,
     Download,
-    GearFill,
-    PencilSquare
 } from "react-bootstrap-icons";
 
 import userRolePermissionService from "../api/userRolePermission.service.js";
@@ -64,9 +58,9 @@ const [permissions, setPermissions] = useState([]);
     // Configuration
     // =====================================================
 
-    const [configList, setConfigList] = useState([]);
 
-    const [configForm, setConfigForm] = useState({});
+
+
 
     // =====================================================
     // Search
@@ -74,7 +68,7 @@ const [permissions, setPermissions] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
-    const [statusFilter, setStatusFilter] = useState("ALL");
+    const [statusFilter, setStatusFilter] = useState("ACTIVE");
 
     // =====================================================
     // Loading
@@ -150,9 +144,9 @@ const loadPermissions = async () => {
 
     const [showForm, setShowForm] = useState(false);
 
-    const [showConfigList, setShowConfigList] = useState(false);
 
-    const [showConfigForm, setShowConfigForm] = useState(false);
+
+
 
     const [showRuntime, setShowRuntime] = useState(false);
 
@@ -214,7 +208,7 @@ const loadPermissions = async () => {
         const response =
             await userRolePermissionService.getMaster("ROLE");
 
-        setRoles(response.data.data || []);
+        setRoles((response.data.data || []).filter((r) => String(r.status || "ACTIVE").toUpperCase() === "ACTIVE"));
     } catch (error) {
         console.log(error);
     }
@@ -259,8 +253,12 @@ const loadMachines = async () => {
 
     useEffect(() => {
 
-        loadMaster(activeTab);
-           loadRoles();
+        if (activeTab !== "ACCESS_MATRIX") {
+            loadMaster(activeTab);
+        } else {
+            setRecords([]);
+        }
+        loadRoles();
     loadShifts();
     loadLines();
     loadMachines();
@@ -350,7 +348,7 @@ const loadMachines = async () => {
     // =====================================================
 
     const loadMaster = async (type = activeTab) => {
-
+        if (type === "ACCESS_MATRIX") return;
         try {
 
             setLoading(true);
@@ -382,166 +380,6 @@ const loadMachines = async () => {
         finally {
 
             setLoading(false);
-
-        }
-
-    };
-
-    // =====================================================
-    // Open Config List
-    // =====================================================
-
-    const openConfigList = async () => {
-
-        try {
-
-            setLoading(true);
-
-            const response = await userRolePermissionService.getConfig();
-
-            setConfigList(
-
-                response.data.data || []
-
-            );
-
-            setShowConfigList(true);
-
-        }
-
-        catch (error) {
-
-            showToast(
-
-                error.response?.data?.message ||
-
-                "Unable to load configuration.",
-
-                "danger"
-
-            );
-
-        }
-
-        finally {
-
-            setLoading(false);
-
-        }
-
-    };
-
-    // =====================================================
-    // New Configuration
-    // =====================================================
-
-    const newConfiguration = () => {
-
-        setConfigForm({
-
-            type: activeTab,
-
-            role_name: "",
-
-            permission_name: "",
-
-            module_name: "",
-
-            description: "",
-
-            status: "ACTIVE"
-
-        });
-
-        setShowConfigForm(true);
-
-    };
-
-    // =====================================================
-    // Edit Configuration
-    // =====================================================
-
-    const editConfiguration = (item) => {
-
-        setConfigForm(item);
-
-        setShowConfigForm(true);
-
-    };
-
-    // =====================================================
-    // Config Change
-    // =====================================================
-
-    const handleConfigChange = (event) => {
-
-        const {
-
-            name,
-
-            value
-
-        } = event.target;
-
-        setConfigForm({
-
-            ...configForm,
-
-            [name]: value
-
-        });
-
-    };
-
-    // =====================================================
-    // Save Configuration (POST ONLY)
-    // =====================================================
-
-    const saveConfiguration = async () => {
-
-        try {
-
-            setSaving(true);
-
-            const response =
-
-                await userRolePermissionService.saveConfig(
-
-                    configForm
-
-                );
-
-            showToast(
-
-                response.data.message ||
-
-                "Configuration Saved"
-
-            );
-
-            setShowConfigForm(false);
-
-            openConfigList();
-
-        }
-
-        catch (error) {
-
-            showToast(
-
-                error.response?.data?.message ||
-
-                "Unable to save configuration",
-
-                "danger"
-
-            );
-
-        }
-
-        finally {
-
-            setSaving(false);
 
         }
 
@@ -859,11 +697,7 @@ const loadMachines = async () => {
 
         const statusMatch =
 
-            statusFilter === "ALL"
-
-            ||
-
-            item.status === statusFilter;
+            (activeTab === "PERMISSION" || activeTab === "ROLE_PERMISSION" || String(item.status || "").trim().toUpperCase() === "ACTIVE");
 
         return searchMatch && statusMatch;
 
@@ -944,31 +778,11 @@ const loadMachines = async () => {
 
                         >
 
-                            <Plus />
-
-                            {" "}
-
                             Add
 
                         </Button>}
 
-                        <Button
 
-                            variant="warning"
-
-                            className="ms-2"
-
-                            onClick={openConfigList}
-
-                        >
-
-                            <GearFill />
-
-                            {" "}
-
-                            Config
-
-                        </Button>
 
                     </Col>
 
@@ -994,7 +808,7 @@ const loadMachines = async () => {
 
                             <InputGroup.Text>
 
-                                <Search />
+                                Search
 
                             </InputGroup.Text>
 
@@ -1020,45 +834,7 @@ const loadMachines = async () => {
 
                     </Col>
 
-                    <Col md={2}>
-
-                        <Form.Select
-
-                            value={statusFilter}
-
-                            onChange={(e)=>
-
-                                setStatusFilter(
-
-                                    e.target.value
-
-                                )
-
-                            }
-
-                        >
-
-                            <option value="ALL">
-
-                                All Status
-
-                            </option>
-
-                            <option value="ACTIVE">
-
-                                ACTIVE
-
-                            </option>
-
-                            <option value="INACTIVE">
-
-                                INACTIVE
-
-                            </option>
-
-                        </Form.Select>
-
-                    </Col>
+                    
 
                     <Col
 
@@ -1088,55 +864,13 @@ const loadMachines = async () => {
 
                         <Button
 
-                            variant="outline-warning"
-
-                            className="me-2"
-
-                            onClick={loadRuntime}
-
-                        >
-
-                            <ClockHistory />
-
-                        </Button>
-
-                        <Button
-
-                            variant="outline-dark"
-
-                            className="me-2"
-
-                            onClick={executeData}
-
-                        >
-
-                            <PlayFill />
-
-                        </Button>
-
-                        <Button
-
-                            variant="outline-primary"
-
-                            className="me-2"
-
-                            onClick={loadReport}
-
-                        >
-
-                            <FileText />
-
-                        </Button>
-
-                        <Button
-
                             variant="outline-success"
 
                             onClick={exportData}
 
                         >
 
-                            <Download />
+                            <Download /> {" "} Export CSV
 
                         </Button>
 
@@ -1745,7 +1479,7 @@ const loadMachines = async () => {
 
                                         >
 
-                                            <PencilSquare />
+                                            Edit
 
                                         </Button>
 
@@ -2508,510 +2242,6 @@ const loadMachines = async () => {
                                 :
 
                                 "Save"
-
-                    }
-
-                </Button>
-
-            </Modal.Footer>
-
-        </Modal>
-
-        {/* ===================================================== */}
-        {/* Configuration List */}
-        {/* ===================================================== */}
-                {/* ===================================================== */}
-        {/* Configuration List */}
-        {/* ===================================================== */}
-
-        <Modal
-            show={showConfigList}
-            onHide={() => setShowConfigList(false)}
-            size="xl"
-            centered
-        >
-
-            <Modal.Header closeButton>
-
-                <Modal.Title>
-
-                    User Role Configuration
-
-                </Modal.Title>
-
-            </Modal.Header>
-
-            <Modal.Body>
-
-                <div className="d-flex justify-content-end mb-3">
-
-                    <Button
-                        variant="success"
-                        onClick={newConfiguration}
-                    >
-
-                        <Plus />
-
-                        {" "}
-
-                        New Configuration
-
-                    </Button>
-
-                </div>
-
-                <div className="table-responsive">
-
-                    <Table
-                        hover
-                        striped
-                        bordered
-                    >
-
-                        <thead className="table-dark">
-
-                            <tr>
-
-                                <th>
-
-                                    Type
-
-                                </th>
-
-                                <th>
-
-                                    Name
-
-                                </th>
-
-                                <th>
-
-                                    Module
-
-                                </th>
-
-                                <th>
-
-                                    Status
-
-                                </th>
-
-                                <th>
-
-                                    Action
-
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            {
-
-                                configList.length===0 ?
-
-                                (
-
-                                    <tr>
-
-                                        <td
-                                            colSpan="5"
-                                            className="text-center"
-                                        >
-
-                                            No Configuration Found
-
-                                        </td>
-
-                                    </tr>
-
-                                )
-
-                                :
-
-                                configList.map((item,index)=>(
-
-                                    <tr key={index}>
-
-                                        <td>
-
-                                            {
-
-                                                item.type
-
-                                            }
-
-                                        </td>
-
-                                        <td>
-
-                                            {
-
-                                                item.role_name ||
-
-                                                item.permission_name ||
-
-                                                item.username ||
-
-                                                "-"
-
-                                            }
-
-                                        </td>
-
-                                        <td>
-
-                                            {
-
-                                                item.module_name ||
-
-                                                "-"
-
-                                            }
-
-                                        </td>
-
-                                        <td>
-
-                                            <Badge
-
-                                                bg={
-
-                                                    item.status==="ACTIVE"
-
-                                                    ?
-
-                                                    "success"
-
-                                                    :
-
-                                                    "secondary"
-
-                                                }
-
-                                            >
-
-                                                {
-
-                                                    item.status
-
-                                                }
-
-                                            </Badge>
-
-                                        </td>
-
-                                        <td>
-
-                                            <Button
-
-                                                size="sm"
-
-                                                variant="outline-primary"
-
-                                                onClick={()=>
-
-                                                    editConfiguration(item)
-
-                                                }
-
-                                            >
-
-                                                Open
-
-                                            </Button>
-
-                                        </td>
-
-                                    </tr>
-
-                                ))
-
-                            }
-
-                        </tbody>
-
-                    </Table>
-
-                </div>
-
-            </Modal.Body>
-
-        </Modal>
-
-        {/* ===================================================== */}
-        {/* Configuration Form */}
-        {/* ===================================================== */}
-
-        <Modal
-
-            show={showConfigForm}
-
-            onHide={()=>
-
-                setShowConfigForm(false)
-
-            }
-
-            size="lg"
-
-            centered
-
-        >
-
-            <Modal.Header closeButton>
-
-                <Modal.Title>
-
-                    Configuration
-
-                </Modal.Title>
-
-            </Modal.Header>
-
-            <Modal.Body>
-
-                <Form>
-
-                    <Row>
-
-                        <Col md={6}>
-
-                            <Form.Group className="mb-3">
-
-                                <Form.Label>
-
-                                    Type
-
-                                </Form.Label>
-
-                                <Form.Control
-
-                                    name="type"
-
-                                    value={configForm.type || ""}
-
-                                    onChange={handleConfigChange}
-
-                                />
-
-                            </Form.Group>
-
-                        </Col>
-
-                        <Col md={6}>
-
-                            <Form.Group className="mb-3">
-
-                                <Form.Label>
-
-                                    Status
-
-                                </Form.Label>
-
-                                <Form.Select
-
-                                    name="status"
-
-                                    value={
-
-                                        configForm.status ||
-
-                                        "ACTIVE"
-
-                                    }
-
-                                    onChange={handleConfigChange}
-
-                                >
-
-                                    <option value="ACTIVE">
-
-                                        ACTIVE
-
-                                    </option>
-
-                                    <option value="INACTIVE">
-
-                                        INACTIVE
-
-                                    </option>
-
-                                </Form.Select>
-
-                            </Form.Group>
-
-                        </Col>
-
-                    </Row>
-
-                    <Form.Group className="mb-3">
-
-                        <Form.Label>
-
-                            Role Name
-
-                        </Form.Label>
-
-                        <Form.Control
-
-                            name="role_name"
-
-                            value={
-
-                                configForm.role_name ||
-
-                                ""
-
-                            }
-
-                            onChange={handleConfigChange}
-
-                        />
-
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-
-                        <Form.Label>
-
-                            Permission Name
-
-                        </Form.Label>
-
-                        <Form.Control
-
-                            name="permission_name"
-
-                            value={
-
-                                configForm.permission_name ||
-
-                                ""
-
-                            }
-
-                            onChange={handleConfigChange}
-
-                        />
-
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-
-                        <Form.Label>
-
-                            Module Name
-
-                        </Form.Label>
-
-                        <Form.Control
-
-                            name="module_name"
-
-                            value={
-
-                                configForm.module_name ||
-
-                                ""
-
-                            }
-
-                            onChange={handleConfigChange}
-
-                        />
-
-                    </Form.Group>
-
-                    <Form.Group>
-
-                        <Form.Label>
-
-                            Description
-
-                        </Form.Label>
-
-                        <Form.Control
-
-                            as="textarea"
-
-                            rows={3}
-
-                            name="description"
-
-                            value={
-
-                                configForm.description ||
-
-                                ""
-
-                            }
-
-                            onChange={handleConfigChange}
-
-                        />
-
-                    </Form.Group>
-
-                </Form>
-
-            </Modal.Body>
-
-            <Modal.Footer>
-
-                <Button
-
-                    variant="secondary"
-
-                    onClick={()=>
-
-                        setShowConfigForm(false)
-
-                    }
-
-                >
-
-                    Cancel
-
-                </Button>
-
-                <Button
-
-                    variant="success"
-
-                    disabled={saving}
-
-                    onClick={saveConfiguration}
-
-                >
-
-                    {
-
-                        saving
-
-                        ?
-
-                        <>
-
-                            <Spinner
-
-                                animation="border"
-
-                                size="sm"
-
-                                className="me-2"
-
-                            />
-
-                            Saving...
-
-                        </>
-
-                        :
-
-                        "Save Configuration"
 
                     }
 

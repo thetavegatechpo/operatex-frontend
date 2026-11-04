@@ -1,3 +1,4 @@
+import "../../EnterpriseSetupClean.css";
 import Table from '../../../../shared/components/SmartTable.jsx';
 
 // src/pages/CompanyMaster/CompanyMaster.jsx
@@ -47,7 +48,7 @@ function CompanyMaster() {
     // ==================================================
     // DATA
     // ==================================================
-const [statusFilter, setStatusFilter] = useState("ALL");
+const [statusFilter, setStatusFilter] = useState("ACTIVE");
     const [companies, setCompanies] = useState([]);
 
     const [runtimeData, setRuntimeData] = useState([]);
@@ -620,11 +621,7 @@ const [pageSize,setPageSize]=useState(10);
 
     const statusMatch =
 
-        statusFilter==="ALL"
-
-        ||
-
-        company.status===statusFilter;
+        String(company.status || "").toUpperCase() === "ACTIVE";
 
     return searchMatch && statusMatch;
 
@@ -785,7 +782,7 @@ status={row.status}
 
                             >
 
-                                <Plus />
+                                
 
                                 {" "}
 
@@ -812,6 +809,7 @@ status={row.status}
 
     onSearch={setSearchText}
 
+    showStatus={false}
     status={statusFilter}
 
     onStatusChange={setStatusFilter}
@@ -822,7 +820,7 @@ status={row.status}
     showRuntime={false}
 
 
-    onReport={loadReport}
+    
 
     onExport={exportCompany}
 
@@ -854,7 +852,7 @@ onExecute={false}
 onRuntime={false}
 
 
-onReport={loadReport}
+
 
 onExport={exportCompany}
 

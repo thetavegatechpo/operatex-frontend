@@ -1,0 +1,26 @@
+/* Rule Engine dashboard enhancements: scoped, no navbar/sidebar changes. */
+.ra-rule-engine .ra-rule-metrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 18px}
+.ra-rule-engine .ra-rule-metrics .ra-stat{position:relative;overflow:hidden;border-radius:14px;min-height:153px;padding:18px 19px 16px;box-shadow:0 8px 25px rgba(26,53,80,.055);transition:transform .15s ease,box-shadow .15s ease}
+.ra-rule-engine .ra-rule-metrics .ra-stat:hover{transform:translateY(-2px);box-shadow:0 12px 27px rgba(26,53,80,.10)}
+.ra-rule-engine .ra-rule-metrics .ra-stat::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--metric-accent)}
+.ra-rule-engine .ra-stat--green{--metric-accent:#0f9c7a;--metric-fill:#e3f8f1;--metric-ink:#08755c;background:linear-gradient(130deg,#fff 55%,#effcf7 100%)}
+.ra-rule-engine .ra-stat--blue{--metric-accent:#2868d9;--metric-fill:#e8f0ff;--metric-ink:#2455a7;background:linear-gradient(130deg,#fff 55%,#edf4ff 100%)}
+.ra-rule-engine .ra-stat--purple{--metric-accent:#8460c7;--metric-fill:#f2ebff;--metric-ink:#6545a6;background:linear-gradient(130deg,#fff 55%,#f8f3ff 100%)}
+.ra-rule-engine .ra-stat--amber{--metric-accent:#d18a30;--metric-fill:#fff2db;--metric-ink:#ad6c17;background:linear-gradient(130deg,#fff 55%,#fff8ea 100%)}
+.ra-rule-engine .ra-stat-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:10px}
+.ra-rule-engine .ra-stat-icon{width:39px;height:39px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--metric-fill);color:var(--metric-ink)}
+.ra-rule-engine .ra-stat-caption{color:#8a9aab;font-size:.63rem;font-weight:800;letter-spacing:.11em;text-align:right}
+.ra-rule-engine .ra-stat-label{font-size:.82rem;color:#627b8e;font-weight:650;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.ra-rule-engine .ra-stat-label strong{display:inline-block;margin:0;font-size:2rem;font-weight:800;line-height:1;color:#102c48;font-variant-numeric:tabular-nums}
+.ra-rule-engine .ra-stat-foot{font-size:.72rem;color:#8a9aab;margin-top:10px}
+.ra-rule-engine .ra-rule-toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ra-rule-engine .ra-rule-permission-hint{display:flex;align-items:flex-start;gap:9px;padding:11px 13px;margin:0 0 15px;color:#6b581d;border:1px solid #f0dea6;background:#fffaea;border-radius:9px;font-size:.82rem;line-height:1.5}
+.ra-rule-engine .ra-rule-permission-hint svg{flex-shrink:0;margin-top:1px}
+.ra-rule-engine .ra-rule-empty-callout{margin:12px 0 18px;border:1px dashed #bcd0e2;border-radius:12px;background:#f7fbff;padding:16px;display:flex;align-items:center;gap:13px}
+.ra-rule-engine .ra-rule-empty-callout .ra-rule-empty-icon{background:#e6f1ff;color:#2368b9;border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ra-rule-engine .ra-rule-empty-callout>div:nth-child(2){flex:1;min-width:0}
+.ra-rule-engine .ra-rule-empty-callout strong{color:#163a5e;font-size:.89rem}
+.ra-rule-engine .ra-rule-empty-callout p{font-size:.8rem;color:#697f94;margin:4px 0 0}
+.ra-rule-engine button:disabled{cursor:not-allowed}
+@media(max-width:1300px){.ra-rule-engine .ra-rule-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.ra-rule-engine .ra-rule-metrics{grid-template-columns:1fr}.ra-rule-engine .ra-rule-toolbar{width:100%}.ra-rule-engine .ra-rule-toolbar .ra-search{flex:1;min-width:145px}.ra-rule-engine .ra-rule-empty-callout{flex-wrap:wrap}.ra-rule-engine .ra-rule-empty-callout .btn{width:100%}}

@@ -12,6 +12,7 @@ import "@fontsource/montserrat/latin-700.css";
 import "@fontsource/montserrat/latin-800.css";
 import "./styles/index.css";
 import "./styles/graphite-signal.css";
+import "./styles/theme.css"; // Steel & Signal: light/dark tokens + motion (must stay last)
 // import "./styles/App.css";          // only if this existed before
 // import "./styles/global.css"; // only if this existed before
 
@@ -25,6 +26,10 @@ import {
 } from "./features/auth/context/AuthContext.jsx";
 
 import App from "./app/App.jsx";
+import {ThemeProvider,applyInitialTheme} from "./shared/theme/ThemeContext.jsx";
+
+// Set data-theme before first paint so there is no light flash in dark mode.
+applyInitialTheme();
 
 
 const queryClient =
@@ -47,9 +52,11 @@ ReactDOM.createRoot(
             client={queryClient}
         >
 
-            <AuthProvider>
-                <App />
-            </AuthProvider>
+            <ThemeProvider>
+                <AuthProvider>
+                    <App />
+                </AuthProvider>
+            </ThemeProvider>
 
         </QueryClientProvider>
 

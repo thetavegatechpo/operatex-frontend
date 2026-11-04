@@ -237,7 +237,10 @@ export const menuGroups = [
           {
     title: "Breakdown Maintenance",
     path: "/maintenance/breakdown-maintenance"
-}
+},
+            { title: "Condition Monitoring", path: "/maintenance/condition-monitoring" },
+            { title: "Spare Parts", path: "/maintenance/spare-parts" },
+            { title: "Maintenance Interlock", path: "/maintenance/maintenance-interlock" }
         ]
     },
     {
@@ -251,7 +254,10 @@ export const menuGroups = [
             },
             { title: "Gauge / SPC", path: "/quality/gauge-spc" },
             { title: "In-Process Inspection", path: "/quality/in-process-inspection" },
-            { title: "Setup Approval", path: "/quality/setup-approval" }
+            { title: "Setup Approval", path: "/quality/setup-approval" },
+            { title: "Part Rejection", path: "/quality/part-rejection" },
+            { title: "Quality Notification", path: "/quality/quality-notification" },
+            { title: "CAPA / Defect Workflow", path: "/quality/capa-defect-workflow" }
         ]
     },
     {
@@ -260,7 +266,12 @@ export const menuGroups = [
         Icon: CpuFill,
         items: [
             { title: "CNC Adapter", path: "/connectivity/cnc-adapter" },
-            { title: ".NET Gateway", path: "/connectivity/net-gateway" }
+            { title: ".NET Gateway", path: "/connectivity/net-gateway" },
+            { title: "PLC / SPM Adapter", path: "/connectivity/plc-spm-adapter" },
+            { title: "Scanner Adapter", path: "/connectivity/scanner-adapter" },
+            { title: "Torque Tool Adapter", path: "/connectivity/torque-tool-adapter" },
+            { title: "Gauge / Sensor Adapter", path: "/connectivity/gauge-sensor-adapter" },
+            { title: "MQTT / Event Ingestion", path: "/connectivity/mqtt-event-ingestion" }
         ]
     },
     {
@@ -269,9 +280,45 @@ export const menuGroups = [
         Icon: Wrench,
         items: [
             { title: "Tool Life Monitoring", path: "/tooling/tool-life-monitoring" },
-            { title: "Tool Replacement", path: "/tooling/tool-replacement" }
+            { title: "Tool Replacement", path: "/tooling/tool-replacement" },
+            { title: "Tool Offset / Wear", path: "/tooling/tool-offset-wear" },
+            { title: "Tool Calibration", path: "/tooling/tool-calibration" }
         ]
-    }
+    },
+    { key: "new-traceability", title: "Traceability", Icon: Diagram3Fill, items: [
+      { title: "Unit Serial / VIN / Engine ID", path: "/traceability/unit-serial-vin-engine-id" },
+      { title: "Barcode Validation", path: "/traceability/barcode-validation" },
+      { title: "Process Result", path: "/traceability/process-result" },
+      { title: "Assembly Linking", path: "/traceability/assembly-linking" },
+      { title: "Genealogy", path: "/traceability/genealogy" },
+      { title: "Rework / Repair Trace", path: "/traceability/rework-repair-trace" },
+      { title: "Final Trace Report", path: "/traceability/final-trace-report" }
+    ] },
+    { key: "new-rules-alerts", title: "Rules & Alerts", Icon: ShieldCheck, items: [
+      { title: "Rule Engine", path: "/rules-alerts/rule-engine" },
+      { title: "Alert Engine", path: "/rules-alerts/alert-engine" },
+      { title: "Notification Engine", path: "/rules-alerts/notification-engine" },
+      { title: "Interlock Engine", path: "/rules-alerts/interlock-engine" },
+      { title: "Bypass Governance", path: "/rules-alerts/bypass-governance" },
+      { title: "Audit Trail", path: "/rules-alerts/audit-trail" }
+    ] },
+    { key: "new-analytics-reports", title: "Analytics & Reports", Icon: Activity, items: [
+      { title: "Production Dashboard", path: "/analytics-reports/production-dashboard" },
+      { title: "Oee Dashboard", path: "/analytics-reports/oee-dashboard" },
+      { title: "Quality Dashboard", path: "/analytics-reports/quality-dashboard" },
+      { title: "Maintenance Dashboard", path: "/analytics-reports/maintenance-dashboard" },
+      { title: "Traceability Dashboard", path: "/analytics-reports/traceability-dashboard" },
+      { title: "Report Builder", path: "/analytics-reports/report-builder" },
+      { title: "AI / Predictive Analytics", path: "/analytics-reports/ai-predictive-analytics" }
+    ] },
+    { key: "new-integration-governance", title: "Integration & Governance", Icon: CpuFill, items: [
+      { title: "API Layer", path: "/integration-governance/api-layer" },
+      { title: "ERP / SAP Integration", path: "/integration-governance/erp-sap-integration" },
+      { title: "Data Import / Export", path: "/integration-governance/data-import-export" },
+      { title: "Backup / Archive", path: "/integration-governance/backup-archive" },
+      { title: "Security / Compliance", path: "/integration-governance/security-compliance" },
+      { title: "Data Quality Monitor", path: "/integration-governance/data-quality-monitor" }
+    ] }
 ];
 
 function renderMenuItems(items) {
@@ -310,11 +357,23 @@ function renderMenuItems(items) {
 
 export default function Sidebar() {
     const {pathname} = useLocation();
+    const [user, setUser] = useState(readSavedUser);
     const [search,setSearch] = useState("");
     const activeGroup=menuGroups.find(g=>g.items.some(i=>i.path.toLowerCase()===pathname.toLowerCase()))?.key;
-    const groups=menuGroups.map(g=>({...g,items:g.items.filter(i=>(g.title+" "+i.title).toLowerCase().includes(search.toLowerCase()))})).filter(g=>g.items.length);
+    const roleCode = String(user?.role_code || '').toUpperCase();
+    const operatorPaths = new Set(['/operator-workstation','/machine-status','/quality/checksheet','/breakdown-management']);
+    const fullAccess = roleCode === 'ADMIN' || roleCode === 'MANAGER';
+    const allowedGroups = {
+      OPERATOR: new Set(['Production Execution','Quality Management','OEE & Loss']),
+      QUALITY: new Set(['Quality Management','OEE & Loss','Analytics & Reports']),
+      PRODUCTION: new Set(['Planning','Production Execution','OEE & Loss','Analytics & Reports']),
+      MAINTENANCE: new Set(['Maintenance Management','Tooling','OEE & Loss','Analytics & Reports'])
+    };
+    const groups=menuGroups.filter(g => fullAccess || (allowedGroups[roleCode]?.has(g.title) ?? false))
+      .map(g=>({...g,items:g.items.filter(i=>
+        (roleCode !== 'OPERATOR' || operatorPaths.has(i.path.toLowerCase())) &&
+        (g.title+" "+i.title).toLowerCase().includes(search.toLowerCase()))})).filter(g=>g.items.length);
     const [collapsed, setCollapsed] = useState(false);
-    const [user, setUser] = useState(readSavedUser);
 
     useEffect(() => {
         const handleStorage = (event) => {

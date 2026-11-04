@@ -1,276 +1,95 @@
-import React from 'react';
-
-import { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
-
+import "../../EnterpriseSetupClean.css";
+import React, { useCallback, useEffect, useState } from "react";
+import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import moduleService from "../api/module.service.js";
-
-import PageHeader from "../../../../shared/components/PageHeader.jsx";
-
-import DataTable from "../../../../shared/components/DataTable.jsx";
-import StatusBadge from "../../../../shared/components/StatusBadge.jsx";
-import ToastMessage from "../../../../shared/components/ToastMessage.jsx";
-
 import "./ModuleEnablement.css";
 
-function ModuleEnablement() {
-
-    const [modules, setModules] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [searchText, setSearchText] = useState("");
-
-    const [toast, setToast] = useState({
-        show: false,
-        message: "",
-        variant: "success"
-    });
-
-    const showToast = (message, variant = "success") => {
-
-        setToast({
-            show: true,
-            message,
-            variant
-        });
-
-    };
-
-    // ==========================================
-    // Load Config
-    // ==========================================
-
-    const loadConfig = async () => {
-
-        try {
-
-            setLoading(true);
-
-            const response = await moduleService.getConfig();
-
-            console.log("API Response :", response.data.data);
-
-            setModules(response.data.data || []);
-
-        } catch (error) {
-
-            showToast(
-                error.response?.data?.message ||
-                "Unable to load modules.",
-                "danger"
-            );
-
-        } finally {
-
-            setLoading(false);
-
-        }
-
-    };
-
-    // ==========================================
-    // Toggle
-    // ==========================================
-
-    const toggleModule = async (row) => {
-
-        try {
-
-            await moduleService.updateModuleConfig({
-
-                module_name: row.module_name,
-
-                is_enabled:
-                    Number(row.is_enabled) === 1 ? 0 : 1
-
-            });
-
-            loadConfig();
-
-            showToast("Module updated successfully.");
-
-        } catch (error) {
-
-            showToast(
-                error.response?.data?.message ||
-                "Unable to update module.",
-                "danger"
-            );
-
-        }
-
-    };
-
-    // ==========================================
-    // Search
-    // ==========================================
-
-    const filteredData = modules.filter((item) => {
-
-        const search = searchText.toLowerCase();
-
-        return (
-
-            (item.display_name || "")
-                .toLowerCase()
-                .includes(search)
-
-            ||
-
-            (item.module_name || "")
-                .toLowerCase()
-                .includes(search)
-
-            ||
-
-            (item.module_group || "")
-                .toLowerCase()
-                .includes(search)
-
-        );
-
-    });
-
-    console.log("Modules :", modules.length);
-    console.log("Filtered :", filteredData.length);
-
-    // ==========================================
-    // Columns
-    // ==========================================
-// ==========================================
-// Table Columns
-// ==========================================
-
-const columns = [
-
-    {
-
-        key: "sr_no",
-
-        label: "Sr. No",
-
-        render: (row, index) => index + 1
-
-    },
-
-    {
-
-        key: "display_name",
-
-        label: "Module",
-
-        render: (row) =>
-
-            row.display_name || row.module_name
-
-    },
-
-    {
-
-        key: "module_status",
-
-        label: "Status",
-
-        render: (row) => (
-
-            <span
-                className={
-                    Number(row.is_enabled) === 1
-                        ? "text-success fw-bold"
-                        : "text-danger fw-bold"
-                }
-            >
-                {
-                    Number(row.is_enabled) === 1
-                        ? "Enabled"
-                        : "Disabled"
-                }
-            </span>
-
-        )
-
-    },
-
-    {
-
-        key: "is_enabled",
-
-        label: "Enable / Disable",
-
-        render: (row) => (
-
-            <Form.Check
-
-                type="switch"
-
-                checked={Number(row.is_enabled) === 1}
-
-                onChange={() => toggleModule(row)}
-
-            />
-
-        )
-
+export default function ModuleEnablement() {
+  const [groups, setGroups] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(null);
+  const [error, setError] = useState("");
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await moduleService.getGroups();
+      setGroups(Array.isArray(response?.data?.data) ? response.data.data : []);
+    } catch (err) {
+      setError(err?.response?.data?.message || "Unable to load company modules.");
+    } finally {
+      setLoading(false);
     }
+  }, []);
 
-];
- 
+  useEffect(() => { load(); }, [load]);
 
-    useEffect(() => {
+  const toggleGroup = async (group) => {
+    if (saving || !group.is_provisioned) return;
+    const nextEnabled = !Boolean(group.is_enabled);
+    setSaving(group.module_group);
+    setError("");
+    try {
+      await moduleService.updateGroup({
+        module_group: group.module_group,
+        is_enabled: nextEnabled,
+      });
+      await load();
+    } catch (err) {
+      setError(err?.response?.data?.message || "Unable to update module access.");
+    } finally {
+      setSaving(null);
+    }
+  };
 
-        loadConfig();
-
-    }, []);
-
-    return (
-
-        <>
-
-<div className="page-container">
-
-            <PageHeader
-
-                title="Module Enablement"
-
-                subtitle="Enable or Disable System Modules"
-
-            />
-
-          
-
-            <DataTable
-
-                columns={columns}
-
-                data={filteredData}
-
-                loading={loading}
-
-                emptyMessage="No Modules Found"
-
-            />
-
-            <ToastMessage
-
-                show={toast.show}
-
-                message={toast.message}
-
-                variant={toast.variant}
-
-                onClose={() =>
-                    setToast({
-                        ...toast,
-                        show: false
-                    })
-                }
-
-            />
-
+  return (
+    <div className="opx-module-page">
+      <div className="opx-module-header">
+        <div>
+          <h2>Module Enablement</h2>
+          <p>Choose the main modules available to this company. Submodules follow the main module automatically.</p>
         </div>
-</>
-
-    );
-
+        <Button variant="outline-primary" onClick={load} disabled={loading || saving !== null}>Refresh</Button>
+      </div>
+      {error && <Alert variant="danger">{error}</Alert>}
+      {loading ? (
+        <div className="opx-module-loading"><Spinner animation="border" size="sm" /> Loading modules...</div>
+      ) : groups.length === 0 ? (
+        <div className="opx-module-empty">No main modules are configured in the active module catalog.</div>
+      ) : (
+        <div className="opx-module-grid">
+          {groups.map((group) => {
+            const provisioned = Boolean(group.is_provisioned);
+            const enabled = Boolean(group.is_enabled);
+            const isSaving = saving === group.module_group;
+            return (
+              <div className="opx-module-card" key={group.module_group}>
+                <div className="opx-module-top">
+                  <div className="opx-module-text">
+                    <h3>{group.module_group}</h3>
+                    <p>{group.module_count || 0} submodules included</p>
+                  </div>
+                  <Form.Check
+                    type="switch"
+                    id={`module-${String(group.module_group).replace(/[^a-z0-9]/gi, "-")}`}
+                    checked={enabled}
+                    disabled={!provisioned || saving !== null}
+                    onChange={() => toggleGroup(group)}
+                    aria-label={`Enable ${group.module_group}`}
+                  />
+                </div>
+                <div className="opx-module-footer">
+                  <span className={`opx-module-status ${!provisioned ? "unlicensed" : enabled ? "enabled" : "disabled"}`}>
+                    {!provisioned ? "Not licensed" : isSaving ? "Saving..." : enabled ? "Enabled" : "Disabled"}
+                  </span>
+                  {!provisioned && <span className="opx-module-note">License setup required</span>}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
-
-export default ModuleEnablement;

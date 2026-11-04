@@ -1,3 +1,4 @@
+import "../../EnterpriseSetupClean.css";
 import React from 'react';
 
 import Table from '../../../../shared/components/SmartTable.jsx';
@@ -72,7 +73,7 @@ const [showHolidayModal, setShowHolidayModal] = useState(false);
 
     const [searchText, setSearchText] = useState("");
 
-    const [statusFilter, setStatusFilter] = useState("ALL");
+    const [statusFilter, setStatusFilter] = useState("ACTIVE");
 
     // =====================================================
     // Loading
@@ -1001,8 +1002,7 @@ const filteredData = shifts.filter((item) => {
         String(item.shift_no).includes(search);
 
     const matchStatus =
-        statusFilter === "ALL" ||
-        item.status === statusFilter;
+        String(item.status || "").toUpperCase() === "ACTIVE";
 
     return matchSearch && matchStatus;
 
@@ -1025,7 +1025,7 @@ const filteredData = shifts.filter((item) => {
 
     <PageHeader
     title="Shift Master"
-    subtitle="Master Data / Shift Calendar"
+    subtitle="Enterprise Setup / Shift Calendar"
 >
 
     <Button
@@ -1036,13 +1036,6 @@ const filteredData = shifts.filter((item) => {
         }}
     >
         + Add Shift
-    </Button>
-
-    <Button
-        className="warning-btn"
-        onClick={loadConfig}
-    >
-        Config
     </Button>
 
 </PageHeader>
@@ -1057,17 +1050,18 @@ const filteredData = shifts.filter((item) => {
 
     onSearchChange={setSearchText}
 
+    showStatus={false}
     statusValue={statusFilter}
 
     onStatusChange={setStatusFilter}
 
     onRefresh={loadShiftMaster}
 
-    onRuntime={loadRuntime}
 
-    onExecute={() => setShowExecute(true)}
 
-    onReport={loadReport}
+
+
+
 
     onExport={() => setShowExport(true)}
 
@@ -1475,7 +1469,7 @@ const filteredData = shifts.filter((item) => {
                 onClick={newConfiguration}
             >
 
-                <Plus />
+                
 
                 {" "}
 

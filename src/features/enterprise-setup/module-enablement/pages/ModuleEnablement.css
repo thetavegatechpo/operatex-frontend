@@ -1,0 +1,21 @@
+.opx-module-page { padding: 28px 30px; max-width: 1280px; margin: 0 auto; color: #12263c; }
+.opx-module-header { display: flex; align-items: start; justify-content: space-between; gap: 18px; margin-bottom: 26px; }
+.opx-module-header h2 { margin: 0 0 7px; font-size: 23px; font-weight: 650; letter-spacing: -.3px; }
+.opx-module-header p { color: #67788c; font-size: 13px; margin: 0; max-width: 680px; }
+.opx-module-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.opx-module-card { background: #fff; border: 1px solid #dbe3ed; border-radius: 12px; padding: 22px; min-height: 142px; transition: border-color .15s; }
+.opx-module-card:hover { border-color: #9bb7e4; }
+.opx-module-top { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+.opx-module-text h3 { font-size: 18px; margin: 0 0 8px; font-weight: 600; }
+.opx-module-text p { margin: 0; font-size: 12px; color: #718197; }
+.opx-module-top .form-check-input { width: 2.35em; height: 1.22em; margin: 3px 0 0; cursor: pointer; }
+.opx-module-top .form-check-input:checked { background-color: #2463eb; border-color: #2463eb; }
+.opx-module-top .form-check-input:disabled { cursor: not-allowed; }
+.opx-module-footer { margin-top: 23px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.opx-module-status { border-radius: 5px; font-size: 11px; padding: 4px 10px; font-weight: 600; }
+.opx-module-status.enabled { background: #e8f6ed; color: #168045; }
+.opx-module-status.disabled { background: #edf1f5; color: #607083; }
+.opx-module-status.unlicensed { background: #fff2da; color: #936000; }
+.opx-module-note { font-size: 11px; color: #7e8793; }
+.opx-module-loading, .opx-module-empty { padding: 34px 20px; border: 1px solid #dbe3ed; border-radius: 12px; background: #fff; color: #69798a; }
+@media (max-width: 760px) { .opx-module-page { padding: 16px; } .opx-module-grid { grid-template-columns: 1fr; } .opx-module-header { align-items: flex-start; } .opx-module-header h2 { font-size: 20px; } }

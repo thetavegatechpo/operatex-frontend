@@ -1,0 +1,142 @@
+/* ==========================================================================
+   OperateX · "Steel & Signal" theme layer
+   Import AFTER graphite-signal.css. Adds light + dark tokens, motion
+   primitives, and dark-mode coverage for the shared shell and components.
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root{
+  --t-canvas:#f2f5fb; --t-surface:#ffffff; --t-surface-2:#f7f9fd; --t-surface-3:#eef3fb;
+  --t-line:#dfe7f2; --t-line-strong:#c9d6e8;
+  --t-text:#12233b; --t-text-2:#3d526e; --t-muted:#64778f;
+  --t-accent:#2563eb; --t-accent-2:#0ea5a4; --t-signal:#ff5a36;
+  --t-run:#16a34a; --t-idle:#f59e0b; --t-down:#e11d48; --t-maint:#7c5cff; --t-info:#0ea5e9;
+  --t-shadow:0 1px 2px #0f244014,0 10px 30px -12px #0f24402e;
+  --t-shadow-lg:0 24px 60px -20px #0f244040;
+  --t-glow:0 0 0 1px #2563eb22,0 12px 40px -12px #2563eb55;
+  --t-nav:#0e2038; --t-nav-2:#13294a; --t-side:#0e2038;
+  --t-grid:#12233b0a;
+  --t-chart-grid:#e3eaf4; --t-chart-axis:#7a8ca3;
+  --t-tip-bg:#ffffffee; --t-tip-text:#12233b;
+}
+html[data-theme="dark"]{
+  --t-canvas:#070e1b; --t-surface:#0e1a2f; --t-surface-2:#12213a; --t-surface-3:#172a47;
+  --t-line:#1c3052; --t-line-strong:#2a4571;
+  --t-text:#e7eefb; --t-text-2:#b4c4dc; --t-muted:#8197b5;
+  --t-accent:#4f8cff; --t-accent-2:#2dd4bf; --t-signal:#ff6b4a;
+  --t-run:#34d399; --t-idle:#fbbf24; --t-down:#fb7185; --t-maint:#a78bfa; --t-info:#38bdf8;
+  --t-shadow:0 1px 2px #00000066,0 12px 34px -14px #000000b0;
+  --t-shadow-lg:0 28px 70px -22px #000000d0;
+  --t-glow:0 0 0 1px #4f8cff33,0 14px 44px -14px #4f8cff66;
+  --t-nav:#08121f; --t-nav-2:#0d1c33; --t-side:#08121f;
+  --t-grid:#ffffff08;
+  --t-chart-grid:#1b2f50; --t-chart-axis:#8197b5;
+  --t-tip-bg:#0b1628ee; --t-tip-text:#e7eefb;
+  color-scheme:dark;
+}
+
+/* smooth cross-fade when toggling */
+html.ox-theme-switching *,html.ox-theme-switching *:before,html.ox-theme-switching *:after{
+  transition:background-color .4s ease,border-color .4s ease,color .4s ease,fill .4s ease,stroke .4s ease,box-shadow .4s ease!important}
+
+/* ---------- Motion primitives ---------- */
+@keyframes ox-fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes ox-fade-in{from{opacity:0}to{opacity:1}}
+@keyframes ox-shimmer{0%{background-position:-420px 0}100%{background-position:420px 0}}
+@keyframes ox-pulse-ring{0%{box-shadow:0 0 0 0 currentColor}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes ox-spin{to{transform:rotate(360deg)}}
+@keyframes ox-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes ox-wiggle{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
+@keyframes ox-beat{0%,100%{transform:scale(1)}14%{transform:scale(1.16)}28%{transform:scale(1)}42%{transform:scale(1.1)}70%{transform:scale(1)}}
+@keyframes ox-sweep{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+@keyframes ox-blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes ox-bar-flow{from{background-position:0 0}to{background-position:28px 0}}
+
+.ox-reveal{opacity:0}
+.ox-reveal.is-in{opacity:1;animation:ox-fade-up .7s cubic-bezier(.2,.7,.2,1) var(--rv-delay,0ms) backwards}
+.ox-num{font-variant-numeric:tabular-nums}
+.app-content>*{animation:ox-fade-up .5s cubic-bezier(.2,.7,.2,1) both}
+.ox-skeleton{background:linear-gradient(100deg,var(--t-surface-3) 30%,var(--t-surface-2) 50%,var(--t-surface-3) 70%);background-size:840px 100%;animation:ox-shimmer 1.4s linear infinite;border-radius:8px}
+
+/* ---------- Shell: canvas, navbar, sidebar ---------- */
+html body,html body .app-layout,html body .app-layout .app-content{background:var(--t-canvas)!important;color:var(--t-text)!important}
+html body .app-layout .app-content{
+  background-image:radial-gradient(circle at 1px 1px,var(--t-grid) 1px,transparent 0)!important;background-size:26px 26px!important;scrollbar-width:thin}
+
+html body .app-layout .operatex-navbar{
+  background:linear-gradient(100deg,var(--t-nav),var(--t-nav-2))!important;position:relative;border-bottom:1px solid #ffffff12!important;
+  box-shadow:0 8px 30px -12px #00000070}
+html body .app-layout .operatex-navbar:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--t-accent),var(--t-signal),var(--t-accent),transparent);background-size:200% 100%;
+  animation:ox-bar-flow 6s linear infinite;opacity:.9}
+.ox-nav-tools{display:flex;align-items:center;gap:14px}
+.ox-nav-clock{display:grid;text-align:right;line-height:1.25;color:#cfe0f7}
+.ox-nav-clock b{font-size:13px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.ox-nav-clock small{font-size:9px;letter-spacing:.1em;color:#8da6c6;text-transform:uppercase}
+.ox-nav-live{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.12em;font-weight:700;color:#7ee7b4;
+  padding:6px 10px;border:1px solid #34d39944;border-radius:999px;background:#34d39912}
+.ox-nav-live i{width:7px;height:7px;border-radius:50%;background:#34d399;color:#34d399;animation:ox-pulse-ring 1.8s infinite}
+.ox-nav-context svg{animation:ox-float 3s ease-in-out infinite}
+@media(max-width:1100px){.ox-nav-clock,.ox-nav-live{display:none}}
+
+html body .app-layout .sidebar{background:linear-gradient(180deg,var(--t-side),var(--t-nav-2))!important;border-right:1px solid #ffffff10!important}
+html body .sidebar .menu-link,html body .sidebar .submenu-link,html body .sidebar .accordion-button{transition:background .22s,color .22s,transform .22s,padding .22s}
+html body .sidebar .menu-link:hover{background:#ffffff0f!important;transform:translateX(3px)}
+html body .sidebar .menu-link.active{background:linear-gradient(100deg,var(--t-accent),#3b82f6)!important;box-shadow:0 8px 22px -8px var(--t-accent)!important;position:relative;overflow:hidden}
+html body .sidebar .menu-link.active:after{content:'';position:absolute;inset:0;width:40%;background:linear-gradient(100deg,transparent,#ffffff33,transparent);animation:ox-sweep 3.6s ease-in-out infinite}
+html body .sidebar .menu-link svg,html body .sidebar .accordion-title svg{transition:transform .35s}
+html body .sidebar .menu-link:hover svg,html body .sidebar .accordion-button:hover .accordion-title svg{transform:scale(1.18) rotate(-6deg)}
+html body .sidebar .submenu-link:hover{transform:translateX(4px);background:#ffffff0d!important}
+html body .sidebar .submenu-link.active{border-left-color:var(--t-signal)!important;background:#ffffff12!important;color:#fff!important}
+html body .sidebar .submenu-link.active .submenu-line{background:var(--t-signal)!important;box-shadow:0 0 8px var(--t-signal)}
+
+/* ---------- Dark mode: shared components ---------- */
+html[data-theme="dark"] body .app-content :is(h1,h2,h3,h4,h5,h6){color:var(--t-text)!important}
+html[data-theme="dark"] body .app-content :is(.text-muted,p.text-muted,small.text-muted){color:var(--t-muted)!important}
+html[data-theme="dark"] body .app-content .card,
+html[data-theme="dark"] body .app-content :is(.cx-floor,.cx-attention,.cx-workspace article,.cx-dashboard-counts,.ox-insights,.cx-result,.cx-production,.cx-cycle,.cx-dateboard,.ox-metric-card,.nx-panel,.bd-header,.bd-main-card,.bd-summary-card){
+  background:var(--t-surface)!important;border-color:var(--t-line)!important;color:var(--t-text)!important;box-shadow:var(--t-shadow)!important}
+html[data-theme="dark"] body .app-content .card-header,
+html[data-theme="dark"] body .app-content :is(.ox-insights-toggle,.ox-table-tools,.ox-table-footer,.ox-metric-card header){background:var(--t-surface-2)!important;color:var(--t-text)!important;border-color:var(--t-line)!important}
+html[data-theme="dark"] body .app-content :is(.ox-insights-body,.ox-insights-body>article+article){border-color:var(--t-line)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) :is(.form-control,.form-select,.input-group-text,.ox-table-tools label,.ox-module-search){
+  background-color:var(--t-surface-2)!important;border-color:var(--t-line-strong)!important;color:var(--t-text)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .form-control::placeholder{color:var(--t-muted)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .form-label{color:var(--t-text-2)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .form-select{--bs-form-select-bg-img:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238197b5' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")}
+html[data-theme="dark"] body :is(.app-content,.modal) .form-control:focus,
+html[data-theme="dark"] body :is(.app-content,.modal) .form-select:focus{border-color:var(--t-accent)!important;box-shadow:0 0 0 3px #4f8cff30!important}
+html[data-theme="dark"] body :is(.app-content,.modal) :is(.btn-light,.btn-outline-secondary){background:var(--t-surface-2)!important;border-color:var(--t-line-strong)!important;color:var(--t-text-2)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) :is(.btn-light,.btn-outline-secondary):hover{background:var(--t-surface-3)!important;color:var(--t-text)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .btn-outline-primary{background:#4f8cff14!important;border-color:#4f8cff55!important;color:#9cc0ff!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .btn-outline-primary:hover{background:#4f8cff2b!important;color:#fff!important}
+html[data-theme="dark"] body .app-content .table{--bs-table-color:var(--t-text-2);--bs-table-hover-bg:#4f8cff12;--bs-table-striped-bg:#ffffff05;color:var(--t-text-2)}
+html[data-theme="dark"] body :is(.app-content,.modal) .table thead th,html[data-theme="dark"] body :is(.app-content,.modal) .table-dark{
+  --bs-table-bg:var(--t-surface-3)!important;--bs-table-color:var(--t-text-2)!important;--bs-table-border-color:var(--t-line)!important;background:var(--t-surface-3)!important;color:var(--t-text-2)!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .table tbody td{color:var(--t-text-2)!important;border-color:var(--t-line)!important;background:transparent!important}
+html[data-theme="dark"] body :is(.app-content,.modal) .table td :is(b,strong){color:var(--t-text)!important}
+html[data-theme="dark"] body .app-content .bd-table tbody tr:hover td{background:#4f8cff14!important}
+html[data-theme="dark"] body .app-content .bd-table :is(th,td):last-child{background:var(--t-surface)!important}
+html[data-theme="dark"] body .app-content .page-link{background:var(--t-surface-2)!important;border-color:var(--t-line)!important;color:var(--t-text-2)!important}
+html[data-theme="dark"] body .app-content .active>.page-link{background:var(--t-accent)!important;color:#fff!important}
+html[data-theme="dark"] body .app-content .badge.bg-success{background:#34d39922!important;color:#6ee7b7!important}
+html[data-theme="dark"] body .app-content .badge.bg-danger{background:#fb718522!important;color:#fda4af!important}
+html[data-theme="dark"] body .app-content .badge.bg-warning{background:#fbbf2422!important;color:#fcd34d!important}
+html[data-theme="dark"] body .app-content .badge.bg-secondary{background:#ffffff14!important;color:var(--t-text-2)!important}
+html[data-theme="dark"] body .app-content .alert{background:var(--t-surface-2);border-color:var(--t-line-strong);color:var(--t-text-2)}
+html[data-theme="dark"] body .modal .modal-content{background:var(--t-surface)!important;border-color:var(--t-line-strong)!important}
+html[data-theme="dark"] body .modal .modal-body{background:var(--t-surface)!important;color:var(--t-text-2)!important}
+html[data-theme="dark"] body .modal .modal-footer{background:var(--t-surface-2)!important;border-top-color:var(--t-line)!important}
+html[data-theme="dark"] .modal-backdrop{--bs-backdrop-bg:#000;--bs-backdrop-opacity:.7}
+html[data-theme="dark"] .ox-state-list>span{background:var(--t-surface-3)!important;color:var(--t-text-2)}
+html[data-theme="dark"] .ox-skip{background:var(--t-surface)}
+html[data-theme="dark"] ::selection{background:#4f8cff55;color:#fff}
+html[data-theme="dark"] ::-webkit-scrollbar{width:10px;height:10px}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb{background:#243a5e;border-radius:10px;border:2px solid var(--t-canvas)}
+html[data-theme="dark"] .recharts-cartesian-grid line{stroke:var(--t-chart-grid)}
+html[data-theme="dark"] .recharts-text,html[data-theme="dark"] .recharts-legend-item-text{fill:var(--t-chart-axis)!important;color:var(--t-text-2)!important}
+
+@media(prefers-reduced-motion:reduce){
+  .ox-reveal{opacity:1}.ox-reveal.is-in{animation:none}
+  html body .app-layout .operatex-navbar:after,.ox-skeleton{animation:none}
+}

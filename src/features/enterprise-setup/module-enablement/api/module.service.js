@@ -12,7 +12,12 @@ const updateModuleConfig = (data) => {
     return api.post(`${API}/config`, data);
 };
 
+const getGroups = () => api.get(`${API}/groups`);
+const updateGroup = (data) => api.put(`${API}/groups`, data);
+
 const moduleService = {
+    getGroups,
+    updateGroup,
     getConfig,
     updateModuleConfig
 };

@@ -95,6 +95,52 @@ const NetGateway = lazy(() => import("../features/connectivity/net-gateway/pages
 const ToolLifeMonitoring = lazy(() => import("../features/tooling/tool-life-monitoring/pages/ToolLifeMonitoring.jsx"));
 const ToolReplacement = lazy(() => import("../features/tooling/tool-replacement/pages/ToolReplacement.jsx"));
 
+
+
+/* Additional Maintenance / Quality and existing Connectivity page registration */
+const ConditionMonitoring = lazy(() => import("../features/maintenance/condition-monitoring/pages/ConditionMonitoring.jsx"));
+const SpareParts = lazy(() => import("../features/maintenance/spare-parts/pages/SpareParts.jsx"));
+const MaintenanceInterlock = lazy(() => import("../features/maintenance/maintenance-interlock/pages/MaintenanceInterlock.jsx"));
+const PartRejection = lazy(() => import("../features/quality/part-rejection/pages/PartRejection.jsx"));
+const QualityNotification = lazy(() => import("../features/quality/quality-notification/pages/QualityNotification.jsx"));
+const CapaDefectWorkflow = lazy(() => import("../features/quality/capa-defect-workflow/pages/CapaDefectWorkflow.jsx"));
+const PlcSpmAdapter = lazy(() => import("../features/connectivity/plc-spm-adapter/pages/PlcSpmAdapter.jsx"));
+const ScannerAdapter = lazy(() => import("../features/connectivity/scanner-adapter/pages/ScannerAdapter.jsx"));
+const TorqueToolAdapter = lazy(() => import("../features/connectivity/torque-tool-adapter/pages/TorqueToolAdapter.jsx"));
+const GaugeSensorAdapter = lazy(() => import("../features/connectivity/gauge-sensor-adapter/pages/GaugeSensorAdapter.jsx"));
+const MqttEventIngestion = lazy(() => import("../features/connectivity/mqtt-event-ingestion/pages/MqttEventIngestion.jsx"));
+
+/* Generated architecture registration: pending operational integration */
+const UnitSerialVinEngineId = lazy(() => import("../features/traceability/unit-serial-vin-engine-id/pages/UnitSerialVinEngineId.jsx"));
+const BarcodeValidation = lazy(() => import("../features/traceability/barcode-validation/pages/BarcodeValidation.jsx"));
+const ProcessResult = lazy(() => import("../features/traceability/process-result/pages/ProcessResult.jsx"));
+const AssemblyLinking = lazy(() => import("../features/traceability/assembly-linking/pages/AssemblyLinking.jsx"));
+const Genealogy = lazy(() => import("../features/traceability/genealogy/pages/Genealogy.jsx"));
+const ReworkRepairTrace = lazy(() => import("../features/traceability/rework-repair-trace/pages/ReworkRepairTrace.jsx"));
+const FinalTraceReport = lazy(() => import("../features/traceability/final-trace-report/pages/FinalTraceReport.jsx"));
+const ToolOffsetWear = lazy(() => import("../features/tooling/tool-offset-wear/pages/ToolOffsetWear.jsx"));
+const ToolCalibration = lazy(() => import("../features/tooling/tool-calibration/pages/ToolCalibration.jsx"));
+const RulesAlertsOverview = lazy(() => import("../features/rules-alerts/RulesAlertsOverview.jsx"));
+const RuleEngine = lazy(() => import("../features/rules-alerts/rule-engine/pages/RuleEngine.jsx"));
+const AlertEngine = lazy(() => import("../features/rules-alerts/alert-engine/pages/AlertEngine.jsx"));
+const NotificationEngine = lazy(() => import("../features/rules-alerts/notification-engine/pages/NotificationEngine.jsx"));
+const InterlockEngine = lazy(() => import("../features/rules-alerts/interlock-engine/pages/InterlockEngine.jsx"));
+const BypassGovernance = lazy(() => import("../features/rules-alerts/bypass-governance/pages/BypassGovernance.jsx"));
+const AuditTrail = lazy(() => import("../features/rules-alerts/audit-trail/pages/AuditTrail.jsx"));
+const ProductionDashboard = lazy(() => import("../features/analytics-reports/production-dashboard/pages/ProductionDashboard.jsx"));
+const OeeDashboard = lazy(() => import("../features/analytics-reports/oee-dashboard/pages/OeeDashboard.jsx"));
+const QualityDashboard = lazy(() => import("../features/analytics-reports/quality-dashboard/pages/QualityDashboard.jsx"));
+const MaintenanceDashboard = lazy(() => import("../features/analytics-reports/maintenance-dashboard/pages/MaintenanceDashboard.jsx"));
+const TraceabilityDashboard = lazy(() => import("../features/analytics-reports/traceability-dashboard/pages/TraceabilityDashboard.jsx"));
+const ReportBuilder = lazy(() => import("../features/analytics-reports/report-builder/pages/ReportBuilder.jsx"));
+const AiPredictiveAnalytics = lazy(() => import("../features/analytics-reports/ai-predictive-analytics/pages/AiPredictiveAnalytics.jsx"));
+const ApiLayer = lazy(() => import("../features/integration-governance/api-layer/pages/ApiLayer.jsx"));
+const ErpSapIntegration = lazy(() => import("../features/integration-governance/erp-sap-integration/pages/ErpSapIntegration.jsx"));
+const DataImportExport = lazy(() => import("../features/integration-governance/data-import-export/pages/DataImportExport.jsx"));
+const BackupArchive = lazy(() => import("../features/integration-governance/backup-archive/pages/BackupArchive.jsx"));
+const SecurityCompliance = lazy(() => import("../features/integration-governance/security-compliance/pages/SecurityCompliance.jsx"));
+const DataQualityMonitor = lazy(() => import("../features/integration-governance/data-quality-monitor/pages/DataQualityMonitor.jsx"));
+
 /* =====================================
    PROTECTED ROUTE
 ===================================== */
@@ -363,6 +409,51 @@ function AppRoutes() {
 <Route path="/tooling/tool-life-monitoring" element={<div data-operatex-feature="tool-life-monitoring" style={{ display: "contents" }}><ToolLifeMonitoring /></div>} />
 <Route path="/tooling/tool-replacement" element={<div data-operatex-feature="tool-replacement" style={{ display: "contents" }}><ToolReplacement /></div>} />
 
+
+
+{/* Additional operational areas: pending backend integration where indicated */}
+<Route path="/maintenance/condition-monitoring" element={<ConditionMonitoring />} />
+<Route path="/maintenance/spare-parts" element={<SpareParts />} />
+<Route path="/maintenance/maintenance-interlock" element={<MaintenanceInterlock />} />
+<Route path="/quality/part-rejection" element={<PartRejection />} />
+<Route path="/quality/quality-notification" element={<QualityNotification />} />
+<Route path="/quality/capa-defect-workflow" element={<CapaDefectWorkflow />} />
+<Route path="/connectivity/plc-spm-adapter" element={<PlcSpmAdapter />} />
+<Route path="/connectivity/scanner-adapter" element={<ScannerAdapter />} />
+<Route path="/connectivity/torque-tool-adapter" element={<TorqueToolAdapter />} />
+<Route path="/connectivity/gauge-sensor-adapter" element={<GaugeSensorAdapter />} />
+<Route path="/connectivity/mqtt-event-ingestion" element={<MqttEventIngestion />} />
+
+{/* Remaining architecture shells: authenticated layout */}
+<Route path="/traceability/unit-serial-vin-engine-id" element={<UnitSerialVinEngineId />} />
+<Route path="/traceability/barcode-validation" element={<BarcodeValidation />} />
+<Route path="/traceability/process-result" element={<ProcessResult />} />
+<Route path="/traceability/assembly-linking" element={<AssemblyLinking />} />
+<Route path="/traceability/genealogy" element={<Genealogy />} />
+<Route path="/traceability/rework-repair-trace" element={<ReworkRepairTrace />} />
+<Route path="/traceability/final-trace-report" element={<FinalTraceReport />} />
+<Route path="/tooling/tool-offset-wear" element={<ToolOffsetWear />} />
+<Route path="/tooling/tool-calibration" element={<ToolCalibration />} />
+<Route path="/rules-alerts" element={<RulesAlertsOverview />} />
+<Route path="/rules-alerts/rule-engine" element={<RuleEngine />} />
+<Route path="/rules-alerts/alert-engine" element={<AlertEngine />} />
+<Route path="/rules-alerts/notification-engine" element={<NotificationEngine />} />
+<Route path="/rules-alerts/interlock-engine" element={<InterlockEngine />} />
+<Route path="/rules-alerts/bypass-governance" element={<BypassGovernance />} />
+<Route path="/rules-alerts/audit-trail" element={<AuditTrail />} />
+<Route path="/analytics-reports/production-dashboard" element={<ProductionDashboard />} />
+<Route path="/analytics-reports/oee-dashboard" element={<OeeDashboard />} />
+<Route path="/analytics-reports/quality-dashboard" element={<QualityDashboard />} />
+<Route path="/analytics-reports/maintenance-dashboard" element={<MaintenanceDashboard />} />
+<Route path="/analytics-reports/traceability-dashboard" element={<TraceabilityDashboard />} />
+<Route path="/analytics-reports/report-builder" element={<ReportBuilder />} />
+<Route path="/analytics-reports/ai-predictive-analytics" element={<AiPredictiveAnalytics />} />
+<Route path="/integration-governance/api-layer" element={<ApiLayer />} />
+<Route path="/integration-governance/erp-sap-integration" element={<ErpSapIntegration />} />
+<Route path="/integration-governance/data-import-export" element={<DataImportExport />} />
+<Route path="/integration-governance/backup-archive" element={<BackupArchive />} />
+<Route path="/integration-governance/security-compliance" element={<SecurityCompliance />} />
+<Route path="/integration-governance/data-quality-monitor" element={<DataQualityMonitor />} />
                 </Route>
 
             

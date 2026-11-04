@@ -1,3 +1,5 @@
+import "../../EnterpriseSetupClean.css";
+import { getWorkspaceContext } from "../../company-master/api/workspaceContext.js";
 
 import Table from '../../../../shared/components/SmartTable.jsx';
 import React, {
@@ -78,7 +80,7 @@ const [plants, setPlants] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
-    const [statusFilter, setStatusFilter] = useState("ALL");
+    const [statusFilter, setStatusFilter] = useState("ACTIVE");
 
     // =====================================================
     // Loading
@@ -207,6 +209,17 @@ const [updateForm, setUpdateForm] = useState({
 
     });
 
+    // Automatically select the signed-in company and first eligible plant.
+    // Never overwrite an edit or a selection the user has already made.
+    const [workspaceContext,setWorkspaceContext]=useState(null);
+    useEffect(()=>{let mounted=true;getWorkspaceContext().then(ctx=>{if(mounted)setWorkspaceContext(ctx);}).catch(console.error);return()=>{mounted=false;};},[]);
+    useEffect(()=>{
+      if(!workspaceContext?.company_id)return;
+      setPlantForm(previous=>previous.company_id?previous:{...previous,company_id:workspaceContext.company_id});
+      const firstPlant=workspaceContext.locations?.find(x=>x.plant_id)?.plant_id;
+      if(firstPlant)setShopForm(previous=>previous.plant_id?previous:{...previous,plant_id:firstPlant});
+    },[workspaceContext]);
+
     // =====================================================
     // Initial Load
     // =====================================================
@@ -279,8 +292,8 @@ const loadPlants = async () => {
     try {
         const response = await plantShopService.getMaster();
 
-        const plantList = response.data.data.filter(
-            row => row.plant_id
+        const plantList = (Array.isArray(response?.data?.data) ? response.data.data : []).filter(
+            row => row.plant_id && String(row.plant_status || "").toUpperCase() === "ACTIVE"
         );
 
         const uniquePlants = [
@@ -308,11 +321,8 @@ const loadPlants = async () => {
 
             const response = await plantShopService.getMaster();
 
-            setMasters(
-
-                response.data.data || []
-
-            );
+            const rows = response?.data?.data;
+            setMasters(Array.isArray(rows) ? rows : []);
 
         }
 
@@ -398,7 +408,7 @@ const loadPlants = async () => {
 
         setPlantForm({
 
-                company_id:"",
+                company_id:workspaceContext?.company_id || "",
     plant_code:"",
     plant_name:"",
     plant_type:"MANUFACTURING",
@@ -420,7 +430,7 @@ const loadPlants = async () => {
 
         setShopForm({
 
-            plant_id: "",
+            plant_id:workspaceContext?.locations?.find(x=>x.plant_id)?.plant_id || "",
 
             shop_code: "",
 
@@ -562,81 +572,20 @@ const updateMaster = async () => {
     // =====================================================
 
     const filteredMasters = masters.filter((row) => {
+        // The API uses plant_status and shop_status, not a generic status.
+        const isPlantActive = String(row.plant_status ?? "").trim().toUpperCase() === "ACTIVE";
+        const isShopActive = !row.shop_id ||
+            String(row.shop_status ?? "").trim().toUpperCase() === "ACTIVE";
+        const query = searchText.trim().toLowerCase();
+        const searchMatch = [
+            row.plant_code,
+            row.plant_name,
+            row.shop_code,
+            row.shop_name,
+            getCompanyName(row.company_id)
+        ].some(value => String(value ?? "").toLowerCase().includes(query));
 
-        const searchMatch =
-
-            (
-
-                row.plant_code || ""
-
-            )
-
-                .toLowerCase()
-
-                .includes(
-
-                    searchText.toLowerCase()
-
-                )
-
-            ||
-
-            (
-
-                row.plant_name || ""
-
-            )
-
-                .toLowerCase()
-
-                .includes(
-
-                    searchText.toLowerCase()
-
-                )
-
-            ||
-
-            (
-
-                row.shop_code || ""
-
-            )
-
-                .toLowerCase()
-
-                .includes(
-
-                    searchText.toLowerCase()
-
-                )
-
-            ||
-
-            (
-
-                row.shop_name || ""
-
-            )
-
-                .toLowerCase()
-
-                .includes(
-
-                    searchText.toLowerCase()
-
-                );
-
-        const statusMatch =
-
-            statusFilter === "ALL"
-
-            ||
-
-            row.status === statusFilter;
-
-        return searchMatch && statusMatch;
-
+        return isPlantActive && isShopActive && searchMatch;
     });
 
     // =====================================================
@@ -1024,7 +973,7 @@ const saveShop = async () => {
 
                             >
 
-                                <Plus />
+                                
 
                                 {" "}
 
@@ -1040,7 +989,7 @@ const saveShop = async () => {
 
                             >
 
-                                <Plus />
+                                
 
                                 {" "}
 
@@ -1098,45 +1047,7 @@ const saveShop = async () => {
 
                         </Col>
 
-                        <Col md={2}>
-
-                            <Form.Select
-
-                                value={statusFilter}
-
-                                onChange={(e)=>
-
-                                    setStatusFilter(
-
-                                        e.target.value
-
-                                    )
-
-                                }
-
-                            >
-
-                                <option value="ALL">
-
-                                    All Status
-
-                                </option>
-
-                                <option value="ACTIVE">
-
-                                    ACTIVE
-
-                                </option>
-
-                                <option value="INACTIVE">
-
-                                    INACTIVE
-
-                                </option>
-
-                            </Form.Select>
-
-                        </Col>
+                        
 
                         <Col
 
@@ -1157,22 +1068,6 @@ const saveShop = async () => {
                             >
 
                                 Refresh
-
-                            </Button>
-
-                           
-
-                            <Button
-
-                                variant="outline-primary"
-
-                                className="me-2"
-
-                                onClick={loadReport}
-
-                            >
-
-                                <FileText />
 
                             </Button>
 
@@ -1277,7 +1172,7 @@ const saveShop = async () => {
 
                                             <td
 
-                                                colSpan="6"
+                                                colSpan="8"
 
                                                 className="text-center py-5"
 
@@ -1305,7 +1200,7 @@ const saveShop = async () => {
 
                                             <td
 
-                                                colSpan="6"
+                                                colSpan="8"
 
                                                 className="text-center"
 
@@ -1331,11 +1226,7 @@ const saveShop = async () => {
 
                                             <tr
 
-                                                key={
-
-                                                    row.id
-
-                                                }
+                                                key={`${row.plant_id}-${row.shop_id || "plant"}-${row.line_id || "no-line"}`}
 
                                             >
                                                 <td>{getCompanyName(row.company_id)}</td>
@@ -1584,6 +1475,7 @@ const saveShop = async () => {
                                 </Form.Group>
 
                             </Col>
+                            <Col md={6}>
                             <Form.Group className="mb-3">
     <Form.Label>Plant Type</Form.Label>
 
@@ -1605,6 +1497,8 @@ const saveShop = async () => {
         </option>
     </Form.Select>
 </Form.Group>
+                            </Col>
+                        </Row>
 <Row>
     <Col md={6}>
         <Form.Group className="mb-3">
@@ -1660,9 +1554,6 @@ const saveShop = async () => {
         </Form.Group>
     </Col>
 </Row>
-
-                            
-                        </Row>
 
                         <Row>
 
@@ -1788,7 +1679,6 @@ const saveShop = async () => {
                 <Modal.Header closeButton>
 
                    <Modal.Title>Create Shop</Modal.Title>
-y
                 </Modal.Header>
 
                 <Modal.Body>
